@@ -1,8 +1,18 @@
 {
-  "depends": [
-    "starship"
-  ],
-  "links": {
-    ".zshrc": "~/.zshrc"
+  "darwin": {
+    "installs": {
+      "cmd": "brew install fzf zoxide"
+    },
+    "links": {
+      ".zshrc": "~/.zshrc"
+    }
+  },
+  "linux": {
+    "installs": {
+      "cmd": "apt install fzf zoxide"
+    },
+    "links": {
+      ".zshrc": "~/.zshrc"
+    }
   }
 }
