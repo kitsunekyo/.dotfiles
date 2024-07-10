@@ -1,0 +1,8 @@
+{
+  "depends": [
+    "starship"
+  ],
+  "links": {
+    ".zshrc": "~/.zshrc"
+  }
+}
