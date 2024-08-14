@@ -1,0 +1,8 @@
+global:
+  installs: false
+
+darwin|linux:
+  depends:
+    - homebrew
+  links:
+    .zshrc: ~/.zshrc
