@@ -1,7 +1,12 @@
-global:
-  installs: false
+linux:
+  installs:
+    cmd: sudo apt install zsh && sudo chsh -s $(which zsh)
+  links:
+    .zshrc: ~/.zshrc
 
-darwin|linux:
+darwin:
+  installs:
+    cmd: brew install zsh && sudo chsh -s $(which zsh)
   depends:
     - homebrew
   links:
