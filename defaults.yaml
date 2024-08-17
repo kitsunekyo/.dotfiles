@@ -1,4 +1,4 @@
 linux:
-  installs: apt install {{ name }}
+  installs: sudo apt install {{ name }} -y
 darwin:
   installs: brew install {{ name }}
