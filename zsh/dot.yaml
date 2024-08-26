@@ -9,5 +9,6 @@ darwin:
     cmd: brew install zsh && sudo chsh -s $(which zsh)
   depends:
     - homebrew
+    - fzf
   links:
     .zshrc: ~/.zshrc
