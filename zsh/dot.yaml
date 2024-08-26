@@ -1,6 +1,9 @@
 linux:
   installs:
     cmd: sudo apt install zsh && sudo chsh -s $(which zsh)
+  depends:
+    - fzf
+    - fd
   links:
     .zshrc: ~/.zshrc
 
@@ -10,5 +13,6 @@ darwin:
   depends:
     - homebrew
     - fzf
+    - fd
   links:
     .zshrc: ~/.zshrc

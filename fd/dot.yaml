@@ -1,0 +1,6 @@
+depends:
+  - homebrew
+
+linux:
+  install:
+    cmd: sudo apt install fd-find -y # see https://github.com/sharkdp/fd?tab=readme-ov-file#on-ubuntu
