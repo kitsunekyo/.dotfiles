@@ -14,6 +14,11 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{160} The clone has failed.%f%b"
 fi
 
+# necessary for fd-find on ubuntu
+if [ -d "$HOME/.local/bin" ] ; then
+  export PATH="$PATH:$HOME/.local/bin"
+fi
+
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
 export FZF_DEFAULT_OPTS='--bind=ctrl-f:accept'  
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

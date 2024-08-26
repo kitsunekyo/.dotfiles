@@ -1,6 +1,8 @@
 linux:
   installs:
-    cmd: sudo apt install zsh && sudo chsh -s $(which zsh)
+    cmd: >
+      sudo apt install zsh && 
+      sudo chsh -s $(which zsh)
   depends:
     - fzf
     - fd
@@ -9,7 +11,9 @@ linux:
 
 darwin:
   installs:
-    cmd: brew install zsh && sudo chsh -s $(which zsh)
+    cmd: >
+      brew install zsh && 
+      sudo chsh -s $(which zsh)
   depends:
     - homebrew
     - fzf
