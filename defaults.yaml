@@ -1,4 +1,7 @@
 linux:
   installs: sudo apt install {{ name }} -y
 darwin:
-  installs: brew install {{ name }}
+  installs: 
+    cmd: brew install {{ name }}
+    depends:
+    - homebrew
