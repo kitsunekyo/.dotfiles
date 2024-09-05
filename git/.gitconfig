@@ -1,6 +1,8 @@
 [user]
 	name = Alex Spieslechner
-	email = alexander.spieslechner@gmail.com
+	email = alexander.spieslechner@dynatrace.com
 [alias]
-	rsync = reset --hard @{u}
-	fixup = "!git rsync log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+	rsync = reset --hard @{u} # hard reset to current upstream branch
+	fixup = "!git rsync log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup" # interactively select fixup
+	upstash = "!git stash && git pull && git stash pop" # update current branch with temp stash
+	up = "!git fetch && git rebase --autostash FETCH_HEAD"
