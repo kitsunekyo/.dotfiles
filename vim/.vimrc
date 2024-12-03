@@ -232,6 +232,7 @@ let g:which_key_map.h = { 'name' : 'Git [H]unk' }
 " [[ Configure fzf.vim ]]
 " See `:help fzf-vim`
 
+imap jj <esc>
 nmap <leader>sh :Helptags<CR>
 let g:which_key_map.s.h = '[S]earch [H]elp'
 nmap <leader>sk :Maps<CR>
