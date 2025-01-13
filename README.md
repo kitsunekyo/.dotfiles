@@ -1,6 +1,4 @@
-# my dotfiles 
-
-manage with `GNU stow`
+managed with `GNU stow`
 
 ## Install
 
