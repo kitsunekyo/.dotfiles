@@ -1,7 +1,0 @@
-linux:
-  installs: sudo apt install {{ name }} -y
-darwin:
-  installs: 
-    cmd: brew install {{ name }}
-    depends:
-    - homebrew

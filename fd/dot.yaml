@@ -1,3 +1,0 @@
-linux:
-  install:
-    cmd: sudo apt install fd-find -y && ln -s $(which fdfind) ~/.local/bin/fd # see https://github.com/sharkdp/fd?tab=readme-ov-file#on-ubuntu

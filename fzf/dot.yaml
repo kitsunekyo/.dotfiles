@@ -1,5 +1,0 @@
-darwin:
-  install:
-    cmd: brew install fzf
-    depends:
-    - homebrew
