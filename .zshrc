@@ -21,7 +21,7 @@ export EDITOR=nvim
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # pnpm
-export PNPM_HOME="/home/aspieslechner/.local/share/pnpm"
+export PNPM_HOME=$HOME"/aspieslechner/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;

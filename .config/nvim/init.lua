@@ -1,23 +1,26 @@
 require("config.lazy")
 
-vim.scriptencoding = "utf-8"
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
+-- visuals
 vim.opt.title = true
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.hlsearch = true
-vim.opt.showcmd = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.laststatus = 0
 vim.opt.scrolloff = 10
+-- search
+vim.opt.hlsearch = true
 vim.opt.ignorecase = true
-vim.opt.backspace = {"start", "eol", "indent"}
-vim.opt.shiftwidth = 2
+vim.opt.smartcase = true
+-- indentation
 vim.opt.autoindent = true
-vim.opt.relativenumber = true
-vim.opt.number = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.foldmethod = "indent"
+-- clipboard
 vim.opt.clipboard = "unnamedplus"
 
+-- keymaps
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
 vim.keymap.set("i", "jj", "<esc>")
 vim.keymap.set("n", "==", "gg=G''")
