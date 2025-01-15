@@ -6,9 +6,10 @@ return {
       statusline.setup { use_icons = true }
 
       require("mini.ai").setup()
-      require("mini.basics").setup()
       require("mini.comment").setup()
-      require("mini.jump").setup()
+      require("mini.indentscope").setup {
+        symbol = '',
+      }
     end
   }
 }
