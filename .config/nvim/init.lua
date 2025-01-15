@@ -17,6 +17,7 @@ vim.opt.autoindent = true
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.foldmethod = "indent"
+vim.opt.foldlevel = 10
 -- clipboard
 vim.opt.clipboard = "unnamedplus"
 
@@ -27,6 +28,7 @@ vim.keymap.set("n", "==", "gg=G''")
 vim.keymap.set("n", "<C-n>", "<cmd>set hlsearch!<CR>")
 vim.keymap.set("n", "q", "<c-v>")
 vim.keymap.set("n", "x", '"_x')
-vim.keymap.set("n", "<Leader>w", ":update<Return>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>q", ":quit<Return>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>Q", ":qa<Return>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>w", ":update<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>q", ":quit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>Q", ":qa<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-z>", ":set wrap!<CR>", { noremap = true, silent = true })
