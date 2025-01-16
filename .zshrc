@@ -7,9 +7,16 @@ fi
 
 # zmodload zsh/zprof
 
-source $HOME/.zsh_config/.zshrc.plugins
-source $HOME/.zsh_config/.zshrc.keybinds
-source $HOME/.zsh_config/.zshrc.alias
+source $HOME/.zsh_config/plugins.zsh
+source $HOME/.zsh_config/keybinds.zsh
+source $HOME/.zsh_config/alias.zsh
+
+if [[ $(uname) == "Darwin" ]]; then
+  source $HOME/.zsh_config/macos.zsh
+fi
+if [[ $(uname) == "Linux" ]]; then
+  source $HOME/.zsh_config/linux.zsh
+fi
 
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -33,14 +40,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # zprof
-
-# use yazi as cd replacement
-function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
 
