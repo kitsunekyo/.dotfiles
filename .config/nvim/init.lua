@@ -32,3 +32,8 @@ vim.keymap.set("n", "<Leader>w", ":update<CR>", { noremap = true, silent = true 
 vim.keymap.set("n", "<Leader>q", ":quit<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>Q", ":qa<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-z>", ":set wrap!<CR>", { noremap = true, silent = true })
+
+-- autocommands
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function() vim.hl.on_yank() end
+})
