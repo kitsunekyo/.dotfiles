@@ -4,7 +4,7 @@ require("config.lazy")
 vim.opt.title = true
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.laststatus = 0
+-- vim.opt.laststatus = 0
 vim.opt.scrolloff = 10
 -- search
 vim.opt.hlsearch = true
@@ -26,14 +26,30 @@ vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
 vim.keymap.set("i", "jj", "<esc>")
 vim.keymap.set("n", "==", "gg=G''")
 vim.keymap.set("n", "<C-n>", "<cmd>set hlsearch!<CR>")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "q", "<c-v>")
 vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "<Leader>w", ":update<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>q", ":quit<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>Q", ":qa<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-z>", ":set wrap!<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function() vim.hl.on_yank() end
+  callback = function()
+    vim.hl.on_yank()
+  end,
 })
+
+vim.g.clipboard = {
+  name = "WslClipboard",
+  copy = {
+    ["+"] = "clip.exe",
+    ["*"] = "clip.exe",
+  },
+  paste = {
+    ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  },
+  cache_enabled = 0,
+}

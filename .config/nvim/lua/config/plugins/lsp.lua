@@ -12,10 +12,11 @@ return {
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
           },
         },
-      }
+      },
     },
     config = function()
-      require("lspconfig").lua_ls.setup {}
+      require("lspconfig").lua_ls.setup({})
+      require("lspconfig").ts_ls.setup({})
     end,
-  }
+  },
 }

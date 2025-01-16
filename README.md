@@ -14,10 +14,9 @@ Run `stow .` within `~/.dotfiles` to symlink all files.
 
 Ensure these are installed.
 
-- "yazi"
 - "fzf"
 - "nvim"
+- "rg" (ripgrep)
+- "fd" (fd-find)
 
-### Linux
-
-- linuxbrew
+For linux, install linuxbrew.

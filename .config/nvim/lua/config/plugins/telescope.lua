@@ -1,41 +1,53 @@
 return {
+  { "nvim-telescope/telescope-ui-select.nvim" },
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.8",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     config = function()
-      local builtin = require('telescope.builtin')
-      local actions = require('telescope.actions')
+      local builtin = require("telescope.builtin")
+      local actions = require("telescope.actions")
 
-      require('telescope').setup {
+      require("telescope").setup({
         pickers = {
           find_files = {
-            hidden = true
+            hidden = true,
           },
           live_grep = {
             hidden = true,
           },
         },
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({}),
+          },
+        },
         defaults = {
           mappings = {
             i = {
-              ["<esc>"] = actions.close
-            }
-          }
-        }
-      }
+              ["<esc>"] = actions.close,
+            },
+          },
+        },
+      })
 
-      require('telescope').setup {
-        defaults = require('telescope.themes').get_dropdown(),
-      }
+      require("telescope").setup({
+        defaults = require("telescope.themes").get_dropdown(),
+      })
 
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-    end
-  }
+      require("telescope").load_extension("ui-select")
+
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [Files]" })
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [G]rep" })
+      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind [B]uffer" })
+      vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
+      vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = "[F]ind [.]Recent files" })
+      vim.keymap.set("n", "<leader>fn", function()
+        builtin.find_files({ cwd = vim.fn.stdpath("config") })
+      end, { desc = "[F]ind [N]vim files" })
+    end,
+  },
 }
