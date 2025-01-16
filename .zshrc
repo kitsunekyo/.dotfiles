@@ -7,15 +7,15 @@ fi
 
 # zmodload zsh/zprof
 
-source $HOME/.zsh_config/plugins.zsh
-source $HOME/.zsh_config/keybinds.zsh
-source $HOME/.zsh_config/alias.zsh
+source $HOME/.zshcustom/plugins.zsh
+source $HOME/.zshcustom/keybinds.zsh
+source $HOME/.zshcustom/alias.zsh
 
 if [[ $(uname) == "Darwin" ]]; then
-  source $HOME/.zsh_config/macos.zsh
+  source $HOME/.zshcustom/macos.zsh
 fi
 if [[ $(uname) == "Linux" ]]; then
-  source $HOME/.zsh_config/linux.zsh
+  source $HOME/.zshcustom/linux.zsh
 fi
 
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
