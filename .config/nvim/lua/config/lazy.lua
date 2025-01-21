@@ -30,8 +30,21 @@ require("lazy").setup({
       name = "catppuccin",
       priority = 1000,
       config = function()
-        vim.cmd.colorscheme "catppuccin-macchiato"
-      end
+        vim.cmd.colorscheme("catppuccin-macchiato")
+      end,
+    },
+    "tpope/vim-sleuth",
+    {
+      "lewis6991/gitsigns.nvim",
+      opts = {
+        signs = {
+          add = { text = "+" },
+          change = { text = "~" },
+          delete = { text = "_" },
+          topdelete = { text = "‾" },
+          changedelete = { text = "~" },
+        },
+      },
     },
     -- { "lunarvim/darkplus.nvim", config = function() vim.cmd.colorscheme "darkplus" end },
     -- modularized plugins
