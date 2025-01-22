@@ -5,7 +5,7 @@
   user = kitsunekyo
 [alias]
   a = add
-  cm = commit -m
+  c = commit -m
   s = status
   p = push
   fp = fetch --prune --all
@@ -15,5 +15,6 @@
   upstash = "!git stash && git pull && git stash pop" # update current branch with temp stash
   update = "!git fetch && git rebase --autostash FETCH_HEAD"
   up = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+  squish = rebase HEAD --autosquash
 [push]
   autoSetupRemote = true
