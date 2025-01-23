@@ -8,13 +8,15 @@
   c = commit -m
   s = status
   p = push
-  fp = fetch --prune --all
+  pf = push --force
   l = log --pretty='format:%C(yellow) %h %C(green) %<(18,trunc)%cn %C(magenta)%<(14,trunc)%cr %C(default)%s'
   rh = reset --hard @{u} # hard reset to current upstream branch
   fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup" # interactively select fixup
   upstash = "!git stash && git pull && git stash pop" # update current branch with temp stash
   update = "!git fetch && git rebase --autostash FETCH_HEAD"
   up = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
-  squish = rebase HEAD --autosquash
+  squish = rebase -i HEAD~6 --autosquash
 [push]
   autoSetupRemote = true
+[core]
+	editor = nvim

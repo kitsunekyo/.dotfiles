@@ -71,6 +71,11 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
 
+          -- Show LSP hover on cursor
+          map("gh", function()
+            vim.lsp.buf.hover()
+          end, "[G]oto [D]efinition")
+
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
@@ -245,7 +250,7 @@ return {
     cmd = { "ConformInfo" },
     keys = {
       {
-        "<leader>f",
+        "<leader>bf",
         function()
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,

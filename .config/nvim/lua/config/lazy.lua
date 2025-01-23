@@ -19,20 +19,10 @@ vim.opt.rtp:prepend(lazypath)
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = " "
 
 require("lazy").setup({
   spec = {
-    -- { "folke/tokyonight.nvim", config = function() vim.cmd.colorscheme "tokyonight" end },
-    {
-      "catppuccin/nvim",
-      lazy = false,
-      name = "catppuccin",
-      priority = 1000,
-      config = function()
-        vim.cmd.colorscheme("catppuccin-macchiato")
-      end,
-    },
     "tpope/vim-sleuth",
     {
       "lewis6991/gitsigns.nvim",
@@ -46,8 +36,6 @@ require("lazy").setup({
         },
       },
     },
-    -- { "lunarvim/darkplus.nvim", config = function() vim.cmd.colorscheme "darkplus" end },
-    -- modularized plugins
     { import = "config.plugins" },
   },
 })

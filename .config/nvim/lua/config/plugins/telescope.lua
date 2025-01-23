@@ -12,6 +12,14 @@ return {
       local actions = require("telescope.actions")
 
       require("telescope").setup({
+        defaults = {
+          path_display = { "truncate" },
+          mappings = {
+            i = {
+              ["<esc>"] = actions.close,
+            },
+          },
+        },
         pickers = {
           find_files = {
             hidden = true,
@@ -23,13 +31,6 @@ return {
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({}),
-          },
-        },
-        defaults = {
-          mappings = {
-            i = {
-              ["<esc>"] = actions.close,
-            },
           },
         },
       })

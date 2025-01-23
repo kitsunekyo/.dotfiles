@@ -1,9 +1,5 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
-require("config.lazy")
-
 vim.opt.mouse = "a"
+vim.opt.mousescroll = "ver:1"
 -- visuals
 vim.opt.title = true
 vim.opt.number = true
@@ -29,6 +25,8 @@ vim.opt.splitright = true
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
+
+require("config.lazy")
 
 -- keymaps
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Source current file" })
