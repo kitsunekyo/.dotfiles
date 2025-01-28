@@ -9,7 +9,7 @@
   s = status
   p = push
   pf = push --force
-  l = log --pretty='format:%C(yellow) %h %C(green) %<(18,trunc)%cn %C(magenta)%<(14,trunc)%cr %C(default)%s'
+  l = log --pretty='format:%C(green) %<(20,trunc)%cn %C(magenta)%<(20,trunc)%ch %C(yellow) %h %C(reset)%<(72,trunc)%s'
   rh = reset --hard @{u} # hard reset to current upstream branch
   fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup" # interactively select fixup
   upstash = "!git stash && git pull && git stash pop" # update current branch with temp stash

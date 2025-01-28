@@ -3,4 +3,4 @@ alias l='ls -gaho --color'
 alias ..='cd ..'
 alias c='clear'
 alias lg='lazygit'
-
+alias pn='pnpm'
