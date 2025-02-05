@@ -9,6 +9,7 @@ fi
 
 source $HOME/.zshcustom/keybinds.zsh
 source $HOME/.zshcustom/alias.zsh
+source $HOME/.zshcustom/plugins.zsh
 
 if [[ $(uname) == "Darwin" ]]; then
   source $HOME/.zshcustom/macos.zsh
@@ -18,10 +19,8 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 source $HOME/.zshcustom/env.zsh
-source $HOME/.zshcustom/plugins.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 # zprof
