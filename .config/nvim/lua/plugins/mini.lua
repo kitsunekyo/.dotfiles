@@ -2,7 +2,9 @@ return {
   {
     "echasnovski/mini.nvim",
     config = function()
-      require("mini.statusline").setup({ use_icons = true })
+      if not vim.g.vscode then
+        require("mini.statusline").setup({ use_icons = true })
+      end
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.comment").setup({})
       require("mini.indentscope").setup({ symbol = "" })
