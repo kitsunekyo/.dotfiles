@@ -1,3 +1,8 @@
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+-- mouse
 vim.opt.mouse = "a"
 vim.opt.mousescroll = "ver:1"
 -- visuals
@@ -29,9 +34,8 @@ end)
 require("config.lazy")
 
 -- keymaps
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Source current file" })
-vim.keymap.set("i", "jj", "<esc>")
-vim.keymap.set("n", "==", "gg=G''", { desc = "Format buffer" })
+vim.keymap.set("i", "jj", "<esc>", { desc = "Exit insert mode" })
+vim.keymap.set("n", "<Leader><Leader>x", "<cmd>source %<CR>", { desc = "Source current file" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "q", "<c-v>", { desc = "Visual Block mode" })
 vim.keymap.set("n", "x", '"_x')
