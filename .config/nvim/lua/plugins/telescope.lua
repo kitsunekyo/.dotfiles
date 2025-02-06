@@ -13,6 +13,13 @@ return {
 
       require("telescope").setup({
         defaults = {
+          layout_config = {
+            prompt_position = "top",
+          },
+          sorting_strategy = "ascending",
+          preview = {
+            hide_on_startup = true,
+          },
           path_display = { "truncate" },
           mappings = {
             i = {
@@ -41,14 +48,21 @@ return {
 
       require("telescope").load_extension("ui-select")
 
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [Files]" })
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
       vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [G]rep" })
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind [B]uffer" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
-      vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = "[F]ind [.]Recent files" })
+      vim.keymap.set("n", "<leader>f.", function()
+        builtin.oldfiles({
+          only_cwd = true,
+        })
+      end, { desc = "[F]ind [.]Recent files" })
       vim.keymap.set("n", "<leader>fn", function()
         builtin.find_files({ cwd = vim.fn.stdpath("config") })
       end, { desc = "[F]ind [N]vim files" })
+      vim.keymap.set("n", "<leader>fc", function()
+        builtin.find_files({ cwd = vim.fn.expand("$HOME/.dotfiles") })
+      end, { desc = "[F]ind [C]onfig" })
     end,
   },
 }

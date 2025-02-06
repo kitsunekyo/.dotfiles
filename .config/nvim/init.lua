@@ -34,16 +34,32 @@ end)
 require("config.lazy")
 
 -- keymaps
-vim.keymap.set("i", "jj", "<esc>", { desc = "Exit insert mode" })
-vim.keymap.set("n", "<Leader><Leader>x", "<cmd>source %<CR>", { desc = "Source current file" })
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("n", "q", "<c-v>", { desc = "Visual Block mode" })
-vim.keymap.set("n", "x", '"_x')
-vim.keymap.set("n", "<Leader>w", ":update<CR>", { desc = "Write file" })
-vim.keymap.set("n", "<Leader>q", ":quit<CR>", { desc = "Quit file" })
-vim.keymap.set("n", "<Leader>Q", ":quit!<CR>", { desc = "Force quit file" })
-vim.keymap.set("n", "<C-z>", ":set wrap!<CR>", { desc = "Toggle line wrap" })
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+local map = vim.keymap.set
+map("i", "jj", "<esc>", { desc = "Exit insert mode" })
+map("n", "<Esc>", "<cmd>nohlsearch<CR>")
+map("n", "x", '"_x')
+map("n", "<C-z>", ":set wrap!<CR>", { desc = "Toggle line wrap" })
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- scrolling
+map("n", "<C-e>", "5<C-e>")
+map("n", "<C-y>", "5<C-y>")
+-- move/copy lines
+map("n", "<A-j>", ":m .+1<cr>==", { desc = "Move Line Down", noremap = true })
+map("n", "<A-k>", ":m .-2<cr>==", { desc = "Move Line Up", noremap = true })
+map("n", "<A-J>", "yyp", { desc = "Copy Line Down", noremap = true })
+map("n", "<A-K>", "yyP", { desc = "Copy Line Up", noremap = true })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Line Down", noremap = true })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true })
+-- file actions
+map("n", "<leader>w", ":w!<cr>", { desc = "Write File" })
+map("n", "<leader>q", "ZZ", { desc = "Close File", noremap = true })
+map("n", "<leader<leader>q", ":wqa<cr>", { desc = "Close All Files", noremap = true })
+map("n", "<leader>rc", ":source $MYVIMRC<cr>", { desc = "Source nvim config", noremap = true })
+-- buffers
+map("n", "<S-Tab>", "<cmd>b#<cr>", { noremap = true })
+-- text editing
+map("v", "<Tab>", ">", { noremap = true })
+map("v", "<S-Tab>", "<", { noremap = true })
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
