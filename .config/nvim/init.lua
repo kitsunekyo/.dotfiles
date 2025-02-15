@@ -53,7 +53,7 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true })
 -- file actions
 map("n", "<leader>w", ":w!<cr>", { desc = "Write File" })
 map("n", "<leader>q", "ZZ", { desc = "Close File", noremap = true })
-map("n", "<leader<leader>q", ":wqa<cr>", { desc = "Close All Files", noremap = true })
+map("n", "<leader>Q", ":wqa<cr>", { desc = "Close All Files", noremap = true })
 map("n", "<leader>rc", ":source $MYVIMRC<cr>", { desc = "Source nvim config", noremap = true })
 -- buffers
 map("n", "<S-Tab>", "<cmd>b#<cr>", { noremap = true })

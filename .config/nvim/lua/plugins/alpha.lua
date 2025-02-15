@@ -1,3 +1,4 @@
+-- startup dashboard
 return {
   "goolord/alpha-nvim",
   enabled = vim.g.vscode == nil,

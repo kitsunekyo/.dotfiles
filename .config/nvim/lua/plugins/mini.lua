@@ -2,6 +2,11 @@ return {
   {
     "echasnovski/mini.nvim",
     config = function()
+      -- mini.surround default keybinds
+      -- - saiw)        - [S]urround [A]dd [I]nner [W]ord with [)]Paren
+      -- - sd'          - [S]urround [D]elete [']
+      -- - sr'"         - [S]urround [R]eplace ['] with ["]
+      require("mini.surround").setup({})
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.comment").setup({})
       require("mini.basics").setup({
@@ -9,16 +14,11 @@ return {
           windows = true,
         },
       })
-      -- mini.surround keybinds
-      -- - saiw)        - [S]urround [A]dd [I]nner [W]ord with [)]Paren
-      -- - sd'          - [S]urround [D]elete [']
-      -- - sr'"         - [S]urround [R]eplace ['] with ["]
-      require("mini.surround").setup({})
 
+      -- below plugins should not be loaded when using vscode-neovim
       if vim.g.vscode then
         return nil
       end
-      -- below plugins should not be loaded when using vscode-neovim
 
       require("mini.indentscope").setup({ symbol = "" })
 

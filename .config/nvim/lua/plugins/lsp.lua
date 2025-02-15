@@ -23,12 +23,12 @@ return {
           end
 
           map("K", vim.lsp.buf.hover, "Hover")
-          map("gd", vim.lsp.buf.definition, "Goto Definition")
-          map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-          map("gr", vim.lsp.buf.references, "Goto References")
-          map("gi", vim.lsp.buf.implementation, "Goto implementation")
-          map("go", vim.lsp.buf.type_definition, "Goto type_definition")
-          map("gs", vim.lsp.buf.signature_help, "Goto signature_help")
+          -- map("gd", vim.lsp.buf.definition, "Goto Definition")
+          -- map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+          -- map("gr", vim.lsp.buf.references, "Goto References")
+          -- map("gi", vim.lsp.buf.implementation, "Goto implementation")
+          -- map("go", vim.lsp.buf.type_definition, "Goto type_definition")
+          -- map("gs", vim.lsp.buf.signature_help, "Goto signature_help")
           map("<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
           map("<F2>", vim.lsp.buf.rename, "Rename Symbol")
           map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
@@ -130,6 +130,8 @@ return {
         lua = { "stylua" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
+        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        javascriptreact = { "prettierd", "prettier", stop_after_first = true },
       },
     },
   },
