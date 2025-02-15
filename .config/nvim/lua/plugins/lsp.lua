@@ -23,23 +23,10 @@ return {
           end
 
           map("K", vim.lsp.buf.hover, "Hover")
-          -- map("gd", vim.lsp.buf.definition, "Goto Definition")
-          -- map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-          -- map("gr", vim.lsp.buf.references, "Goto References")
-          -- map("gi", vim.lsp.buf.implementation, "Goto implementation")
-          -- map("go", vim.lsp.buf.type_definition, "Goto type_definition")
-          -- map("gs", vim.lsp.buf.signature_help, "Goto signature_help")
           map("<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
           map("<F2>", vim.lsp.buf.rename, "Rename Symbol")
           map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
-
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map("<leader>th", function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-            end, "Toggle inlay hints")
-          end
+          map("<leader>cd", vim.diagnostic.open_float, "Line Diagnostics")
         end,
       })
 
@@ -98,7 +85,7 @@ return {
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,
         mode = "",
-        desc = "[F]ormat buffer",
+        desc = "[B]uffer [F]ormat",
       },
       {
         "==",
@@ -106,7 +93,7 @@ return {
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,
         mode = "",
-        desc = "[F]ormat buffer",
+        desc = "Format buffer",
       },
     },
     opts = {
@@ -170,11 +157,11 @@ return {
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           -- Scroll the documentation window [b]ack / [f]orward
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          -- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           -- Accept ([y]es) the completion.
           ["<C-y>"] = cmp.mapping.confirm({ select = true }),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-f>"] = cmp.mapping.confirm({ select = true }),
           ["<Tab>"] = cmp.mapping.select_next_item(),
           ["<S-Tab>"] = cmp.mapping.select_prev_item(),
           -- Manually trigger autocomplete

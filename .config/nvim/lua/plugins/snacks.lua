@@ -8,6 +8,10 @@ return {
       input = {},
       picker = {},
       notifier = {},
+      notify = {},
+      indent = {},
+      scope = {},
+      quickfile = {},
     },
     keys = {
       -- Top Pickers & Explorer
@@ -57,16 +61,14 @@ return {
       {
         "<leader>fc",
         function()
-          Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+          Snacks.picker.files({ cwd = vim.fn.stdpath("config") or "$HOME" })
         end,
         desc = "Find Config File",
       },
       {
         "<leader>ff",
         function()
-          Snacks.picker.files({
-            -- hidden = true,
-          })
+          Snacks.picker.files()
         end,
         desc = "Find Files",
       },
