@@ -40,6 +40,7 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "x", '"_x')
 map("n", "<C-z>", ":set wrap!<CR>", { desc = "Toggle line wrap" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("n", "<leader>v", "<C-v>", { desc = "Visual Block mode" })
 -- scrolling
 map("n", "<C-e>", "5<C-e>")
 map("n", "<C-y>", "5<C-y>")
@@ -60,6 +61,8 @@ map("n", "<S-Tab>", "<cmd>b#<cr>", { noremap = true })
 -- text editing
 map("v", "<Tab>", ">", { noremap = true })
 map("v", "<S-Tab>", "<", { noremap = true })
+-- tags
+map("n", "gt", "<C-]>", { noremap = true })
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
