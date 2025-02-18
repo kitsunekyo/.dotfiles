@@ -26,7 +26,7 @@ return {
       { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer", },
       -- find
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") or "$HOME" }) end, desc = "Find Config File", },
-      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files", },
+      { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files", },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent", },
       -- git
       { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches", },

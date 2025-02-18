@@ -4,14 +4,23 @@ end
 
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
     -- LSP Configuration
     "neovim/nvim-lspconfig",
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
-      { "williamboman/mason-lspconfig.nvim", opts = {} },
-      { "WhoIsSethDaniel/mason-tool-installer.nvim", opts = {} },
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opts = {} },
-      { "hrsh7th/cmp-nvim-lsp", opts = {} },
+      "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -26,7 +35,7 @@ return {
           map("<leader>rn", vim.lsp.buf.rename, "Rename Symbol")
           map("<F2>", vim.lsp.buf.rename, "Rename Symbol")
           map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
-          map("<leader>cd", vim.diagnostic.open_float, "Line Diagnostics")
+          map("<leader>cd", vim.diagnostic.open_float, "Code Diagnostics")
         end,
       })
 
@@ -44,6 +53,7 @@ return {
             },
           },
         },
+        ts_ls = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -65,14 +75,14 @@ return {
       })
     end,
   },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
-    },
-    opts = {},
-  },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "neovim/nvim-lspconfig",
+  --   },
+  --   opts = {},
+  -- },
   -- Autoformat
   {
     "stevearc/conform.nvim",
@@ -80,12 +90,12 @@ return {
     cmd = { "ConformInfo" },
     keys = {
       {
-        "<leader>bf",
+        "<leader>df",
         function()
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,
         mode = "",
-        desc = "[B]uffer [F]ormat",
+        desc = "[D]ocument [F]ormat",
       },
       {
         "==",
@@ -115,10 +125,10 @@ return {
       end,
       formatters_by_ft = {
         lua = { "stylua" },
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-        typescript = { "prettierd", "prettier", stop_after_first = true },
-        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-        javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { "prettierd" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        javascriptreact = { "prettierd" },
       },
     },
   },
@@ -140,6 +150,8 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
       local cmp = require("cmp")
@@ -186,17 +198,73 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
+          { name = "nvim_lsp_signature_help" },
         },
       })
     end,
   },
+  { -- Linting
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local lint = require("lint")
+      lint.linters_by_ft = {
+        markdown = { "markdownlint" },
+        javascript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescript = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+      }
+
+      -- To allow other plugins to add linters to require('lint').linters_by_ft,
+      -- instead set linters_by_ft like this:
+      -- lint.linters_by_ft = lint.linters_by_ft or {}
+      -- lint.linters_by_ft['markdown'] = { 'markdownlint' }
+      --
+      -- However, note that this will enable a set of default linters,
+      -- which will cause errors unless these tools are available:
+      -- {
+      --   clojure = { "clj-kondo" },
+      --   dockerfile = { "hadolint" },
+      --   inko = { "inko" },
+      --   janet = { "janet" },
+      --   json = { "jsonlint" },
+      --   markdown = { "vale" },
+      --   rst = { "vale" },
+      --   ruby = { "ruby" },
+      --   terraform = { "tflint" },
+      --   text = { "vale" }
+      -- }
+      --
+      -- You can disable the default linters by setting their filetypes to nil:
+      -- lint.linters_by_ft['clojure'] = nil
+      -- lint.linters_by_ft['dockerfile'] = nil
+      -- lint.linters_by_ft['inko'] = nil
+      -- lint.linters_by_ft['janet'] = nil
+      -- lint.linters_by_ft['json'] = nil
+      -- lint.linters_by_ft['markdown'] = nil
+      -- lint.linters_by_ft['rst'] = nil
+      -- lint.linters_by_ft['ruby'] = nil
+      -- lint.linters_by_ft['terraform'] = nil
+      -- lint.linters_by_ft['text'] = nil
+
+      -- Create autocommand which carries out the actual linting
+      -- on the specified events.
+      local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        group = lint_augroup,
+        callback = function()
+          -- Only run the linter in buffers that you can modify in order to
+          -- avoid superfluous noise, notably within the handy LSP pop-ups that
+          -- describe the hovered symbol using Markdown.
+          if vim.opt_local.modifiable:get() then
+            lint.try_lint()
+          end
+        end,
+      })
+    end,
+  },
   {
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = {
-      library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
+    "rshkarin/mason-nvim-lint",
   },
 }

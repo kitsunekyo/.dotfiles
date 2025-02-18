@@ -3,32 +3,36 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 -- mouse
-vim.opt.mouse = "a"
-vim.opt.mousescroll = "ver:1"
+vim.o.mouse = "a"
 -- visuals
-vim.opt.title = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 10
+vim.g.have_nerd_font = true
+vim.o.title = true
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.scrolloff = 10
+-- decrease update time
+vim.o.updatetime = 250
 -- search
-vim.opt.hlsearch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.hlsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.inccommand = "split"
 -- indentation
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.autoindent = true
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevel = 10
-vim.opt.breakindent = true
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.autoindent = true
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.foldmethod = "indent"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.breakindent = true
 -- window management
-vim.opt.splitbelow = true
-vim.opt.splitright = true
+vim.o.splitbelow = true
+vim.o.splitright = true
 -- clipboard
 vim.schedule(function()
-  vim.opt.clipboard = "unnamedplus"
+  vim.o.clipboard = "unnamedplus"
 end)
 
 require("config.lazy")
