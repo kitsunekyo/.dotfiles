@@ -9,17 +9,6 @@ return {
       require("mini.surround").setup({})
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.comment").setup({})
-      require("mini.basics").setup({
-        options = {
-          win_borders = "rounded",
-        },
-        mappings = {
-          windows = true,
-        },
-        autocommands = {
-          basic = true,
-        },
-      })
 
       -- below plugins should not be loaded when using vscode-neovim
       if vim.g.vscode then
