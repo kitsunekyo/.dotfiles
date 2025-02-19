@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   "tpope/vim-sleuth",
+  { "nvim-tree/nvim-web-devicons", opts = {} },
   spec = {
     { import = "plugins" },
   },

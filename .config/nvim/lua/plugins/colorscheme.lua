@@ -7,7 +7,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      --  vim.cmd.colorscheme("tokyonight-storm")
+      -- vim.cmd.colorscheme("tokyonight-storm")
       vim.cmd.colorscheme("catppuccin-frappe")
       -- vim.cmd.colorscheme("github_dark")
       -- vim.cmd.colorscheme("onedark")

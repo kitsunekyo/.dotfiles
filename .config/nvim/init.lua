@@ -69,6 +69,11 @@ map("n", "<A-J>", "yyp", { desc = "Copy Line Down", noremap = true })
 map("n", "<A-K>", "yyP", { desc = "Copy Line Up", noremap = true })
 map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Line Down", noremap = true })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true })
+map("n", "∆", ":m .-2<cr>==", { desc = "Move Line Up", noremap = true })
+-- mac specifics for option/alt
+map("n", "º", ":m .+1<cr>==", { desc = "Move Line Down", noremap = true })
+map("v", "º", ":m '>+1<cr>gv=gv", { desc = "Move Line Down", noremap = true }) -- mapping for mac
+map("v", "∆", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true }) -- mapping for mac
 
 -- file actions
 map("n", "<leader>w", ":w!<cr>", { desc = "Write File" })
@@ -85,11 +90,6 @@ map("v", "<S-Tab>", "<", { noremap = true })
 
 -- tags
 map("n", "gt", "<C-]>", { noremap = true })
-
--- toggle
-map("n", "<leader>ti", function()
-  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { noremap = true, desc = "Toggle inline diagnostic" })
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
