@@ -10,7 +10,7 @@ return {
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,
         mode = "",
-        desc = "[D]ocument [F]ormat",
+        desc = "Format",
       },
       {
         "==",
@@ -18,7 +18,7 @@ return {
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,
         mode = "",
-        desc = "Format buffer",
+        desc = "Format",
       },
     },
     opts = {

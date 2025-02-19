@@ -58,8 +58,8 @@ return {
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols", },
       { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols", },
       -- Editor Windows
-      { "<leader>j", function() Snacks.terminal.toggle() end, desc = "Toggle terminal", },
-      { "<leader>tg", function() Snacks.lazygit() end, desc = "Toggle LazyGit", },
+      { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Terminal", },
+      { "<leader>tg", function() Snacks.lazygit() end, desc = "LazyGit", },
       -- stylua: end
     },
   },

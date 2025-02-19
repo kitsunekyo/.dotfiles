@@ -49,47 +49,48 @@ vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
 
--- keymaps
-local map = vim.keymap.set
-map("i", "jj", "<esc>", { desc = "Exit insert mode" })
-map("n", "<Esc>", "<cmd>nohlsearch<CR>")
-map("n", "x", '"_x')
-map("n", "<C-z>", ":set wrap!<CR>", { desc = "Toggle line wrap" })
-map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-map("n", "<leader>v", "<C-v>", { desc = "Visual Block mode" })
+vim.keymap.set("i", "jj", "<esc>", { desc = "Exit insert mode" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "x", '"_x')
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("n", "<leader>v", "<C-v>", { desc = "Visual Block mode" })
 
 -- scrolling
-map("n", "<C-e>", "5<C-e>")
-map("n", "<C-y>", "5<C-y>")
+vim.keymap.set("n", "<C-e>", "5<C-e>")
+vim.keymap.set("n", "<C-y>", "5<C-y>")
 
 -- move/copy lines
-map("n", "<A-j>", ":m .+1<cr>==", { desc = "Move Line Down", noremap = true })
-map("n", "<A-k>", ":m .-2<cr>==", { desc = "Move Line Up", noremap = true })
-map("n", "<A-J>", "yyp", { desc = "Copy Line Down", noremap = true })
-map("n", "<A-K>", "yyP", { desc = "Copy Line Up", noremap = true })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Line Down", noremap = true })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true })
-map("n", "∆", ":m .-2<cr>==", { desc = "Move Line Up", noremap = true })
+vim.keymap.set("n", "<A-j>", ":m .+1<cr>==", { desc = "Move Line Down", noremap = true })
+vim.keymap.set("n", "<A-k>", ":m .-2<cr>==", { desc = "Move Line Up", noremap = true })
+vim.keymap.set("n", "<A-J>", "yyp", { desc = "Copy Line Down", noremap = true })
+vim.keymap.set("n", "<A-K>", "yyP", { desc = "Copy Line Up", noremap = true })
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Line Down", noremap = true })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true })
+vim.keymap.set("n", "∆", ":m .-2<cr>==", { desc = "Move Line Up", noremap = true })
 -- mac specifics for option/alt
-map("n", "º", ":m .+1<cr>==", { desc = "Move Line Down", noremap = true })
-map("v", "º", ":m '>+1<cr>gv=gv", { desc = "Move Line Down", noremap = true }) -- mapping for mac
-map("v", "∆", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true }) -- mapping for mac
+vim.keymap.set("n", "º", ":m .+1<cr>==", { desc = "Move Line Down", noremap = true })
+vim.keymap.set("v", "º", ":m '>+1<cr>gv=gv", { desc = "Move Line Down", noremap = true })
+vim.keymap.set("v", "∆", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true })
 
 -- file actions
-map("n", "<leader>w", ":w!<cr>", { desc = "Write File" })
-map("n", "<leader>q", "ZZ", { desc = "Close File", noremap = true })
-map("n", "<leader>Q", ":wqa<cr>", { desc = "Close All Files", noremap = true })
-map("n", "<leader>rc", ":source $MYVIMRC<cr>", { desc = "Source nvim config", noremap = true })
+vim.keymap.set("n", "<leader>w", ":w!<cr>", { desc = "Write File" })
+vim.keymap.set("n", "<leader>q", "ZZ", { desc = "Close File", noremap = true })
+vim.keymap.set("n", "<leader>Q", ":wqa<cr>", { desc = "Close All Files", noremap = true })
+vim.keymap.set("n", "<leader>rc", ":source $MYVIMRC<cr>", { desc = "Source nvim config", noremap = true })
 
 -- buffers
-map("n", "<S-Tab>", "<cmd>b#<cr>", { noremap = true })
+vim.keymap.set("n", "<S-Tab>", "<cmd>b#<cr>", { noremap = true, desc = "Tab buffers" })
+vim.keymap.set("n", "<leader>dq", "<cmd>bd<cr>", { noremap = true, desc = "Delete buffer" })
 
 -- text editing
-map("v", "<Tab>", ">", { noremap = true })
-map("v", "<S-Tab>", "<", { noremap = true })
+vim.keymap.set("v", "<Tab>", ">", { noremap = true })
+vim.keymap.set("v", "<S-Tab>", "<", { noremap = true })
 
 -- tags
-map("n", "gt", "<C-]>", { noremap = true })
+vim.keymap.set("n", "gt", "<C-]>", { noremap = true })
+
+-- toggle
+vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Linewrap" })
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {

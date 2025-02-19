@@ -78,11 +78,11 @@ return {
             "n",
             "<leader>tD",
             vim.diagnostic.open_float,
-            { buffer = event.buf, desc = "Toggle Diagnostics Hover" }
+            { buffer = event.buf, desc = "Diagnostics Hover" }
           )
           vim.keymap.set("n", "<leader>ti", function()
             vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-          end, { buffer = event.buf, noremap = true, desc = "Toggle inline diagnostic" })
+          end, { buffer = event.buf, noremap = true, desc = "Inline diagnostics" })
         end,
       })
 
