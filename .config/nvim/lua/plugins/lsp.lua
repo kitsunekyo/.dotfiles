@@ -8,35 +8,26 @@ return {
     lazy = false,
     opts = {},
   },
-  -- autocomplete
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    config = function()
-      local cmp = require("cmp")
-
-      cmp.setup({
-        sources = {
-          { name = "nvim_lsp" },
-        },
-        completion = { completeopt = "menu,menuone,noinsert" },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-f>"] = cmp.mapping.confirm({ select = true }),
-          ["<Tab>"] = cmp.mapping.select_next_item(),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-          ["<C-Space>"] = cmp.mapping.complete({}),
-        }),
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
-          end,
-        },
-      })
-    end,
+    "saghen/blink.cmp",
+    dependencies = "rafamadriz/friendly-snippets",
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      -- 'default' for mappings similar to built-in completion
+      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+      -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+      -- See the full "keymap" documentation for information on defining your own keymap.
+      keymap = { preset = "default" },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = "mono",
+      },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+      },
+    },
+    opts_extend = { "sources.default" },
   },
   -- nvim globals
   {
@@ -53,7 +44,7 @@ return {
     "neovim/nvim-lspconfig",
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     dependencies = {
-      { "hrsh7th/cmp-nvim-lsp" },
+      -- { "hrsh7th/cmp-nvim-lsp" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
     },
@@ -64,8 +55,8 @@ return {
       local lsp_defaults = require("lspconfig").util.default_config
 
       -- add cmp_nvim_lsp capabilities settings to lspconfig
-      lsp_defaults.capabilities =
-        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+      -- lsp_defaults.capabilities =
+      --   vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       -- enable features that require an lsp
       vim.api.nvim_create_autocmd("LspAttach", {
