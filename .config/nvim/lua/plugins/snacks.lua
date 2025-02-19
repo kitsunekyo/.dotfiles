@@ -5,13 +5,16 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
+      animate = { enabled = true },
       bigfile = { enabled = true },
       input = { enabled = true },
       picker = { enabled = true },
       notifier = { enabled = true },
       notify = { enabled = true },
       indent = { enabled = true },
+      lazygit = { enabled = true },
       scope = { enabled = true },
+      scroll = { enabled = true },
       quickfile = { enabled = true },
       terminal = { enabled = true },
     },
@@ -56,6 +59,7 @@ return {
       { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols", },
       -- Editor Windows
       { "<leader>j", function() Snacks.terminal.toggle() end, desc = "Toggle terminal", },
+      { "<leader>th", function() Snacks.lazygit() end, desc = "Toggle LazyGit", },
       -- stylua: end
     },
   },
