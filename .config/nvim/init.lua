@@ -86,6 +86,11 @@ map("v", "<S-Tab>", "<", { noremap = true })
 -- tags
 map("n", "gt", "<C-]>", { noremap = true })
 
+-- toggle
+map("n", "<leader>ti", function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { noremap = true })
+
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
