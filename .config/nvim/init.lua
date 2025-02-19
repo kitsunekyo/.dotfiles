@@ -89,7 +89,7 @@ map("n", "gt", "<C-]>", { noremap = true })
 -- toggle
 map("n", "<leader>ti", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { noremap = true })
+end, { noremap = true, desc = "Toggle inline diagnostic" })
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
