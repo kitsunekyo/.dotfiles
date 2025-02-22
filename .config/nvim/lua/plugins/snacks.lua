@@ -11,7 +11,12 @@ return {
       picker = { enabled = true },
       notifier = { enabled = true },
       notify = { enabled = true },
-      indent = { enabled = true },
+      indent = {
+        enabled = true,
+        animate = {
+          enabled = false,
+        },
+      },
       lazygit = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },

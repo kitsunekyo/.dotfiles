@@ -15,6 +15,7 @@ vim.o.title = true
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.scrolloff = 10
+vim.o.termguicolors = true
 
 -- decrease update time
 vim.o.updatetime = 250
@@ -79,7 +80,8 @@ vim.keymap.set("n", "<leader>Q", ":wqa<cr>", { desc = "Close All Files", noremap
 vim.keymap.set("n", "<leader>rc", ":source $MYVIMRC<cr>", { desc = "Source nvim config", noremap = true })
 
 -- buffers
-vim.keymap.set("n", "<S-Tab>", "<cmd>b#<cr>", { noremap = true, desc = "Tab buffers" })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bp<cr>", { noremap = true, desc = "Previous buffer" })
+vim.keymap.set("n", "<Tab>", "<cmd>bn<cr>", { noremap = true, desc = "Next buffer" })
 vim.keymap.set("n", "<leader>dq", "<cmd>bd<cr>", { noremap = true, desc = "Delete buffer" })
 
 -- text editing
