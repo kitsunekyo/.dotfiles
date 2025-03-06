@@ -1,4 +1,3 @@
-### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
@@ -12,19 +11,21 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit ice depth"1" # git clone depth
-
-# PROMPT
 zinit light romkatv/powerlevel10k
 
-zinit ice wait lucid # load everything else lazily
+# zinit ice wait lucid # load everything else lazily
 
 # PLUGINS
-zinit light junegunn/fzf
+# fzf
+export FZF_DEFAULT_OPTS="--style full --height 20%"
+source <(fzf --zsh)
 zinit light Aloxaf/fzf-tab
+# completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 
-# export NVM_COMPLETION=true
-# export NVM_SYMLINK_CURRENT="true"
-# zinit wait lucid light-mode for lukechilds/zsh-nvm
+autoload -Uz compinit;
+compinit
+
+zinit cdreplay -q

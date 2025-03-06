@@ -60,6 +60,7 @@ return {
   },
   {
     "rshkarin/mason-nvim-lint",
+    lazy = true,
     config = function()
       require("mason-nvim-lint").setup({
         ensure_installed = {},
