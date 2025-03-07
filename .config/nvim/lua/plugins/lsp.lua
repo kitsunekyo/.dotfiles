@@ -43,6 +43,7 @@ return {
     dependencies = {
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
+      { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     },
     init = function()
       vim.o.signcolumn = "yes"
@@ -90,6 +91,7 @@ return {
       })
 
       require("mason-lspconfig").setup({
+        -- not using ts_ls here because we use typescript-tools
         ensure_installed = { "lua_ls" },
         automatic_installation = true,
         handlers = {
@@ -98,6 +100,15 @@ return {
             require("lspconfig")[server_name].setup({})
           end,
         },
+      })
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "prettierd",
+          "eslint_d",
+          "stylua",
+        },
+        automatic_installation = true,
+        auto_update = true,
       })
     end,
   },
