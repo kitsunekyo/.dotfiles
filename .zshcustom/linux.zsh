@@ -1,1 +1,1 @@
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+_evalcache /home/linuxbrew/.linuxbrew/bin/brew shellenv
