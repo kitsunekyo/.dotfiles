@@ -14,9 +14,10 @@ Run `stow .` within `~/.dotfiles` to symlink all files.
 
 Ensure these are installed.
 
-- "fzf"
-- "nvim"
-- "rg" (ripgrep)
-- "fd" (fd-find)
+- fzf
+- nvim
+- rg (ripgrep)
+- fd (fd-find)
+- mise
 
 For linux, install linuxbrew.
