@@ -7,4 +7,4 @@ case ":$PATH:" in
 esac
 
 # mise-en-place
-eval "$(/Users/alexander.spieslechner/.local/bin/mise activate zsh)"
+eval "$($HOME/.local/bin/mise activate zsh)"
