@@ -18,6 +18,7 @@ Ensure these are installed.
 - nvim
 - rg (ripgrep)
 - fd (fd-find)
-- mise
+- mise: `nvm` replacement.
+- eza: `ls` replacement. use with aliases `e`, `ea`, `l`, `la`
 
 For linux, install linuxbrew.
