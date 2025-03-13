@@ -8,7 +8,27 @@ return {
       animate = { enabled = true },
       bigfile = { enabled = true },
       input = { enabled = true },
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        layout = {
+          preset = "select",
+        },
+        formatters = {
+          file = {
+            filename_first = true,
+            truncate = 120,
+          },
+        },
+        win = {
+          input = {
+            keys = {
+              ["⁄"] = { "toggle_ignored", mode = { "i", "n" } },
+              ["ª"] = { "toggle_hidden", mode = { "i", "n" } },
+              ["π"] = { "toggle_preview", mode = { "i", "n" } },
+            },
+          },
+        },
+      },
       notifier = { enabled = true },
       notify = { enabled = true },
       indent = {
