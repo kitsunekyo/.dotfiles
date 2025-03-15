@@ -8,7 +8,6 @@ require("config.lazy")
 
 -- mouse
 vim.o.mouse = "a"
-
 -- visuals
 vim.g.have_nerd_font = true
 vim.o.title = true
@@ -36,6 +35,11 @@ vim.o.foldmethod = "indent"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.breakindent = true
+
+-- completion
+vim.o.completeopt = "menuone,noinsert,noselect"
+vim.opt.shortmess = vim.opt.shortmess + "c"
+vim.lsp.inlay_hint.enable()
 
 -- window management
 vim.o.splitbelow = true

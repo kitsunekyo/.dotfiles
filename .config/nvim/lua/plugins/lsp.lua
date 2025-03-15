@@ -13,7 +13,7 @@ return {
     version = "*",
     dependencies = "rafamadriz/friendly-snippets",
     opts = {
-      keymap = { preset = "default", ["<C-f>"] = { "accept" } },
+      keymap = { preset = "default", ["<C-f>"] = { "accept" }, ["<CR>"] = { "accept", "fallback" } },
       appearance = {
         nerd_font_variant = "mono",
       },
@@ -81,12 +81,19 @@ return {
         desc = "LSP actions",
         callback = function(event)
           vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Hover" })
-          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = event.buf, desc = "Rename Symbol" })
+          -- disabled in favor of inc-rename.nvim
+          -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = event.buf, desc = "Rename Symbol" })
           vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "Code Action" })
-          vim.keymap.set("n", "<leader>tD", vim.diagnostic.open_float, { buffer = event.buf, desc = "Diagnostics Hover" })
+          vim.keymap.set("n", "<leader>tD", function()
+            vim.diagnostic.open_float(nil, { focus = false })
+          end, { buffer = event.buf, desc = "Diagnostics Hover" })
           vim.keymap.set("n", "<leader>ti", function()
             vim.diagnostic.enable(not vim.diagnostic.is_enabled())
           end, { buffer = event.buf, noremap = true, desc = "Inline diagnostics" })
+
+          -- diagnostics float on CursorHold
+          vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+          -- vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guigb=#1f2335 guifg=#abb2bf]])
         end,
       })
 
@@ -118,6 +125,7 @@ return {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
     },
+    priority = 25,
     opts = {},
   },
 }
