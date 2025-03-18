@@ -5,9 +5,8 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-      animate = { enabled = false },
+      explorer = {},
       dashboard = {
-        enabled = true,
         sections = {
           { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
           { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
@@ -15,10 +14,10 @@ return {
           { section = "startup" },
         },
       },
-      bigfile = { enabled = true },
-      input = { enabled = true },
+      bigfile = {},
+      input = {},
       picker = {
-        enabled = true,
+        hidden = true,
         layout = {
           preset = "select",
         },
@@ -38,30 +37,36 @@ return {
           },
         },
       },
-      notifier = { enabled = true },
-      notify = { enabled = true },
-      indent = {
-        enabled = true,
-        animate = {
-          enabled = false,
-        },
-      },
-      lazygit = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = true },
-      quickfile = { enabled = true },
-      terminal = { enabled = true },
+      notifier = {},
+      notify = {},
+      -- indent = {
+      --   animate = {
+      --     enabled = false,
+      --   },
+      -- },
+      lazygit = {},
+      scope = {},
+      scroll = {},
+      quickfile = {},
+      terminal = {},
     },
     keys = {
-      -- main pickers
       -- stylua: ignore start
+      -- Main Pickers
       { "<leader><leader>", function() Snacks.picker.smart() end, desc = "Smart Find Files", },
-      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers", },
+      { "<leader>.", function() Snacks.picker.buffers() end, desc = "Buffers", },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep", },
       { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History", },
       { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History", },
-      { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer", },
-      -- find
+      { "<leader>e", function() Snacks.picker.explorer({
+        hidden = true,
+        layout = {
+          layout = {
+            position = 'right',
+          },
+        },       
+      }) end, desc = "File Explorer", },
+      -- Find
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") or "$HOME" }) end, desc = "Find Config File", },
       { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files", },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent", },
@@ -73,7 +78,7 @@ return {
       { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines", },
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers", },
       { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep", },
-      -- search
+      -- Search
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers", },
       { "<leader>s/", function() Snacks.picker.search_history() end, desc = "Search History", },
       { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines", },
@@ -92,9 +97,12 @@ return {
       { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition", },
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols", },
       { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols", },
-      -- Editor Windows
+      -- Toggle
       { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Terminal", },
       { "<leader>tg", function() Snacks.lazygit() end, desc = "LazyGit", },
+      -- Buffers
+      { "<leader>q", function() Snacks.bufdelete() end, desc = "Close buffer", },
+      { "<leader>Q", function() Snacks.bufdelete.all() end, desc = "Close all buffers", },
       -- stylua: ignore end
     },
   },
