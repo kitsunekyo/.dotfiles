@@ -4,11 +4,6 @@ end
 
 return {
   {
-    "williamboman/mason.nvim",
-    lazy = false,
-    opts = {},
-  },
-  {
     "saghen/blink.cmp",
     version = "*",
     dependencies = "rafamadriz/friendly-snippets",
@@ -36,18 +31,16 @@ return {
       },
     },
   },
-  -- lsp
+  -- lsp config
   {
     "neovim/nvim-lspconfig",
-    cmd = { "LspInfo", "LspInstall", "LspStart" },
     dependencies = {
-      { "williamboman/mason.nvim" },
-      { "williamboman/mason-lspconfig.nvim" },
-      { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+      { "williamboman/mason.nvim", opts = {} },
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      { "j-hui/fidget.nvim", opts = {} },
+      { "saghen/blink.cmp" },
     },
-    init = function()
-      vim.o.signcolumn = "yes"
-    end,
     config = function()
       -- diagnostics icons
       vim.diagnostic.config({
@@ -79,6 +72,7 @@ return {
 
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
+        group = vim.api.nvim_create_augroup("augroup-lsp-attach", { clear = true }),
         callback = function(event)
           vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Hover" })
           -- disabled in favor of inc-rename.nvim
@@ -97,35 +91,30 @@ return {
         end,
       })
 
+      local servers = {
+        lua_ls = {},
+        ts_ls = {},
+      }
+
+      local ensure_installed = vim.tbl_keys(servers or {})
+      vim.list_extend(ensure_installed, {
+        "stylua",
+        "prettier",
+        "eslint_d",
+      })
+
+      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       require("mason-lspconfig").setup({
-        -- not using ts_ls here because we use typescript-tools
-        ensure_installed = { "lua_ls" },
-        automatic_installation = true,
+        ensure_installed = {},
+        automatic_installation = false,
         handlers = {
-          -- automatically setup all installed language servers
           function(server_name)
-            require("lspconfig")[server_name].setup({})
+            local server = servers[server_name] or {}
+            server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities or {})
+            require("lspconfig")[server_name].setup(server)
           end,
         },
       })
-      require("mason-tool-installer").setup({
-        ensure_installed = {
-          "prettierd",
-          "eslint_d",
-          "stylua",
-        },
-        automatic_installation = true,
-        auto_update = true,
-      })
     end,
-  },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
-    },
-    priority = 25,
-    opts = {},
   },
 }

@@ -15,6 +15,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.scrolloff = 10
 vim.o.termguicolors = true
+vim.o.signcolumn = "yes"
 
 -- decrease update time
 vim.o.updatetime = 250

@@ -7,7 +7,7 @@ return {
     opts = {
       auto_close = true,
       max_items = 10,
-    }, -- for default options, refer to the configuration section for custom setup.
+    },
     cmd = "Trouble",
     keys = {
       { "<leader>td", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Diagnostics" },

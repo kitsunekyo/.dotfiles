@@ -71,9 +71,9 @@ return {
       { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files", },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent", },
       -- git
-      { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches", },
-      { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log", },
-      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status", },
+      { "<leader>hB", function() Snacks.picker.git_branches() end, desc = "Git Branches", },
+      { "<leader>hl", function() Snacks.picker.git_log() end, desc = "Git Log", },
+      { "<leader>hh", function() Snacks.picker.git_status() end, desc = "Git Status", },
       -- Grep
       { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines", },
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers", },
@@ -88,21 +88,20 @@ return {
       { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages", },
       { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps", },
       { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History", },
-      -- LSP
+      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols", },
+      { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols", },
       { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition", },
       { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration", },
       { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References",
       },
       { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation", },
       { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition", },
-      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols", },
-      { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols", },
       -- Toggle
       { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Terminal", },
       { "<leader>tg", function() Snacks.lazygit() end, desc = "LazyGit", },
       -- Buffers
-      { "<leader>q", function() Snacks.bufdelete() end, desc = "Close buffer", },
-      { "<leader>Q", function() Snacks.bufdelete.all() end, desc = "Close all buffers", },
+      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Close buffer", },
+      { "<leader>bq", function() Snacks.bufdelete.all() end, desc = "Close all buffers", },
       -- stylua: ignore end
     },
   },
