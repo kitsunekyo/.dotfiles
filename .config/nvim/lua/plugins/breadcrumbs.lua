@@ -1,6 +1,6 @@
 return {
   {
-    enabled = false,
+    enabled = true,
     "LunarVim/breadcrumbs.nvim",
     dependencies = {
       { "SmiteshP/nvim-navic" },
