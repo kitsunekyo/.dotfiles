@@ -28,6 +28,8 @@ return {
     opts = {
       library = {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
   },
@@ -42,7 +44,6 @@ return {
       { "saghen/blink.cmp" },
     },
     config = function()
-      -- diagnostics icons
       vim.diagnostic.config({
         severity_sort = true,
         float = { border = "rounded", source = "if_many" },
@@ -72,49 +73,77 @@ return {
 
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
-        group = vim.api.nvim_create_augroup("augroup-lsp-attach", { clear = true }),
         callback = function(event)
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Hover" })
-          -- disabled in favor of inc-rename.nvim
-          -- vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = event.buf, desc = "Rename Symbol" })
-          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "Code Action" })
-          vim.keymap.set("n", "<leader>tD", function()
-            vim.diagnostic.open_float(nil, { focus = false })
-          end, { buffer = event.buf, desc = "Diagnostics Hover" })
-          vim.keymap.set("n", "<leader>ti", function()
-            vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-          end, { buffer = event.buf, noremap = true, desc = "Inline diagnostics" })
+          local function map(keys, cb, desc)
+            vim.keymap.set("n", keys, cb, { buffer = event.buf, noremap = true, desc = desc or "" })
+          end
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-          -- diagnostics float on CursorHold
-          vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
-          -- vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guigb=#1f2335 guifg=#abb2bf]])
+          -- stylua: ignore start
+          map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
+          map("<leader>ti", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics")
+          map("<c-+>", function() vim.diagnostic.goto_next() end, "Next Diagnostics")
+          map("<c-ü>", function() vim.diagnostic.goto_prev() end, "Previous Diagnostics")
+          -- stylua: ignore end
         end,
       })
 
       local servers = {
         lua_ls = {},
-        ts_ls = {},
+        -- replaced by typescript-tools
+        -- ts_ls = {
+        --   settings = {
+        --     format = {
+        --       enable = false,
+        --     },
+        --   },
+        -- },
+        eslint = {
+          settings = {
+            codeAction = {
+              disableRuleComment = {
+                enable = false,
+              },
+              showDocumentation = {
+                enable = false,
+              },
+            },
+            format = false,
+          },
+        },
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         "stylua",
         "prettier",
-        "eslint_d",
       })
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       require("mason-lspconfig").setup({
         ensure_installed = {},
-        automatic_installation = false,
+        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
-            server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities or {})
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
             require("lspconfig")[server_name].setup(server)
           end,
         },
       })
     end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      settings = {
+        expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
+      },
+    },
   },
 }
