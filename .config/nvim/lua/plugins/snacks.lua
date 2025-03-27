@@ -89,6 +89,7 @@ return {
       { "gri", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation", },
       -- Toggle
       { "<leader>tg", function() Snacks.lazygit() end, desc = "LazyGit", },
+      { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Terminal", },
       -- Buffers
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Close buffer", },
       { "<leader>bq", function() Snacks.bufdelete.all() end, desc = "Close all buffers", },
