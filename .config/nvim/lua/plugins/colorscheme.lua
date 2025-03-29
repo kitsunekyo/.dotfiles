@@ -8,7 +8,7 @@ return {
     priority = 1000,
     config = function()
       -- vim.cmd.colorscheme("tokyonight-storm")
-      vim.cmd.colorscheme("catppuccin-macchiato")
+      vim.cmd.colorscheme("catppuccin-mocha")
       -- vim.cmd.colorscheme("github_dark")
       -- vim.cmd.colorscheme("onedark")
     end,
