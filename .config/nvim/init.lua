@@ -55,7 +55,7 @@ vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
 
-vim.keymap.set("i", "jj", "<esc>", { desc = "Exit insert mode" })
+vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("n", "<leader>v", "<C-v>", { desc = "Visual Block mode", noremap = true })
