@@ -92,7 +92,7 @@ return {
       { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Terminal", },
       -- Buffers
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Close buffer", },
-      { "<leader>bq", function() Snacks.bufdelete.all() end, desc = "Close all buffers", },
+      { "<leader>bQ", function() Snacks.bufdelete.all() end, desc = "Close all buffers", },
       -- stylua: ignore end
     },
   },
