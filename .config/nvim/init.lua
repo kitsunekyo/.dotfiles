@@ -3,6 +3,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.o.langmap = "ü[,+],Ü{,*},ö\\;,Ö:"
+
 -- bootstrap lazy.nvim
 require("config.lazy")
 
