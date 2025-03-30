@@ -69,23 +69,16 @@ return {
 
           -- stylua: ignore start
           map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-          map("<leader>ti", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics")
-          map("<c-+>", function() vim.diagnostic.goto_next() end, "Next Diagnostics")
-          map("<c-ü>", function() vim.diagnostic.goto_prev() end, "Previous Diagnostics")
+          map("<leader>td", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics")
+
+          vim.keymap.set("n", "üd", function() vim.diagnostic.jump({ count=-1, float=true, wrap=true }) end)
+          vim.keymap.set("n", "+d", function() vim.diagnostic.jump({ count=1, float=true, wrap=true }) end)
           -- stylua: ignore end
         end,
       })
 
       local servers = {
         lua_ls = {},
-        -- replaced by typescript-tools
-        -- ts_ls = {
-        --   settings = {
-        --     format = {
-        --       enable = false,
-        --     },
-        --   },
-        -- },
         eslint = {
           settings = {
             codeAction = {

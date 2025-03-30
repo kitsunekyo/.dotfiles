@@ -3,7 +3,17 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.o.langmap = "ü[,+],Ü{,*},ö\\;,Ö:"
+-- remap ü+ to [] to mimic US ansi for better movements with iso keyboards
+-- umlaut mappings dont work.
+-- see https://github.com/neovim/neovim/issues/27776
+vim.opt.langmap = "ü+Ü*öÖ;[]{}\\;:"
+vim.keymap.set("n", "[ü", "[[")
+vim.keymap.set("n", "]ä", "]]")
+vim.keymap.set("n", "üb", ":bp<cr>") -- prev buffer
+vim.keymap.set("n", "üq", ":cp<cr>") -- prev quickfix
+vim.keymap.set("n", "ül", ":lp<cr>") -- prev location
+vim.keymap.set("n", "üt", ":tp<cr>") -- prev tag
+vim.keymap.set("n", "ü<space>", "O<esc>j") -- insert line above
 
 -- bootstrap lazy.nvim
 require("config.lazy")
@@ -115,6 +125,13 @@ vim.keymap.set("n", "gt", "<C-]>", { noremap = true })
 
 -- toggle
 vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Linewrap" })
+
+-- iso fixes because langmap doesnt work with umlauts for some reason @see https://www.reddit.com/r/vim/comments/legi6u/help_with_mapping_%C3%B6_and_%C3%A4_to_and/
+-- vim.keymap.set("n", "<C-k>q", "[q")
+-- vim.keymap.set("n", "ül", "[l")
+-- vim.keymap.set("n", "üt", "[t")
+-- vim.keymap.set("n", "üa", "[a")
+-- vim.keymap.set("n", "<C-k>:u b", "[b")
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {

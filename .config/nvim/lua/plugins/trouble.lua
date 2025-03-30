@@ -10,7 +10,7 @@ return {
     },
     cmd = "Trouble",
     keys = {
-      { "<leader>td", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Diagnostics" },
+      { "<leader>tD", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Diagnostics" },
       { "<leader>tQ", "<cmd>Trouble qflist toggle<cr>", desc = "QuickFixList" },
     },
   },
