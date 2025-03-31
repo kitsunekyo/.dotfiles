@@ -7,13 +7,13 @@ vim.g.maplocalleader = " "
 -- umlaut mappings dont work.
 -- see https://github.com/neovim/neovim/issues/27776
 vim.opt.langmap = "ü+Ü*öÖ;[]{}\\;:"
-vim.keymap.set("n", "[ü", "[[")
-vim.keymap.set("n", "]ä", "]]")
-vim.keymap.set("n", "üb", ":bp<cr>") -- prev buffer
-vim.keymap.set("n", "üq", ":cp<cr>") -- prev quickfix
-vim.keymap.set("n", "ül", ":lp<cr>") -- prev location
-vim.keymap.set("n", "üt", ":tp<cr>") -- prev tag
-vim.keymap.set("n", "ü<space>", "O<esc>j") -- insert line above
+vim.keymap.set("n", "[ü", "[[", { desc = "Sections backward", noremap = true })
+vim.keymap.set("n", "]ä", "]]", { desc = "Sections backward", noremap = true })
+vim.keymap.set("n", "üb", ":bp<cr>", { desc = "Previous buffer", noremap = true }) -- prev buffer
+vim.keymap.set("n", "üq", ":cp<cr>", { desc = "Previous quickfix", noremap = true }) -- prev quickfix
+vim.keymap.set("n", "ül", ":lp<cr>", { desc = "Previous location", noremap = true }) -- prev location
+vim.keymap.set("n", "üt", ":tp<cr>", { desc = "Previous tag", noremap = true }) -- prev tag
+vim.keymap.set("n", "ü<space>", "O<esc>j", { desc = "Insert line above", noremap = true }) -- insert line above
 
 -- bootstrap lazy.nvim
 require("config.lazy")
