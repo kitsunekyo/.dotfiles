@@ -71,8 +71,8 @@ return {
           map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
           map("<leader>td", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics")
 
-          vim.keymap.set("n", "üd", function() vim.diagnostic.jump({ count=-1, float=true, wrap=true }) end)
-          vim.keymap.set("n", "+d", function() vim.diagnostic.jump({ count=1, float=true, wrap=true }) end)
+          map("üd", function() vim.diagnostic.goto_prev({ count=-1, float=true, wrap=true }) end)
+          map("+d", function() vim.diagnostic.goto_next({ count=1, float=true, wrap=true }) end)
           -- stylua: ignore end
         end,
       })
