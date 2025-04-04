@@ -114,6 +114,7 @@ vim.keymap.set("n", "<C-y>", "5<C-y>")
 
 -- file actions
 vim.keymap.set("n", "<leader>w", ":w!<cr>", { desc = "Write File" })
+vim.keymap.set("n", "<leader>q", ":q<cr>", { desc = "Close nvim" })
 vim.keymap.set("n", "<leader>rc", ":source $MYVIMRC<cr>", { desc = "Source nvim config", noremap = true })
 
 -- buffers
