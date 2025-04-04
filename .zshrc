@@ -11,18 +11,18 @@ fi
 #:: profiling start
 # zmodload zsh/zprof
 
+source $HOME/.zshcustom/env.zsh
+source $HOME/.zshcustom/options.zsh
+source $HOME/.zshcustom/history.zsh
 source $HOME/.zshcustom/keybinds.zsh
 source $HOME/.zshcustom/alias.zsh
-source $HOME/.zshcustom/plugins.zsh
-
 if [[ $(uname) == "Darwin" ]]; then
   source $HOME/.zshcustom/macos.zsh
 fi
 if [[ $(uname) == "Linux" ]]; then
   source $HOME/.zshcustom/linux.zsh
 fi
-
-source $HOME/.zshcustom/env.zsh
+source $HOME/.zshcustom/plugins.zsh
 
 #:: profiling end
 # zprof

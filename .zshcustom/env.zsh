@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -8,3 +10,6 @@ esac
 
 # mise-en-place
 eval "$($HOME/.local/bin/mise activate zsh)"
+
+export EDITOR="nvim"
+export VISUAL="nvim"

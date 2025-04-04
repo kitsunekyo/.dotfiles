@@ -18,15 +18,12 @@ zinit light romkatv/powerlevel10k
 # PLUGINS
 # fzf
 export FZF_DEFAULT_OPTS="--style full --height 20%"
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source <(fzf --zsh)
 zinit light Aloxaf/fzf-tab
-# completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 
-autoload -Uz compinit;
-compinit
+autoload -Uz compinit; compinit
 
 zinit cdreplay -q
