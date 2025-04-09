@@ -94,6 +94,7 @@ zinit ice as"command" from"gh-r" \
   atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
+bindkey -e # unset vi mode. because it has weird keymaps for the terminal
 bindkey '^F' autosuggest-accept
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
