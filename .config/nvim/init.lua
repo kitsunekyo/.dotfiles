@@ -88,8 +88,8 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 vim.keymap.set("n", "<leader>v", "<C-v>", { desc = "Visual Block mode", noremap = true })
 -- text editing
 vim.keymap.set("n", "x", '"_x')
-vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete without register", noremap = true })
-vim.keymap.set("n", "<leader>c", '"_c', { desc = "Change without register", noremap = true })
+-- vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete without register", noremap = true })
+-- vim.keymap.set("n", "<leader>c", '"_c', { desc = "Change without register", noremap = true })
 vim.keymap.set("n", "gh", "^", { desc = "Jump to first character", noremap = true })
 vim.keymap.set("n", "gl", "$", { desc = "Jump to last character", noremap = true })
 vim.keymap.set("v", "<Tab>", ">gv", { noremap = true })

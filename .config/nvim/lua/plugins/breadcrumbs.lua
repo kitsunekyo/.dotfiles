@@ -1,9 +1,8 @@
 return {
   {
-    enabled = true,
     "LunarVim/breadcrumbs.nvim",
     dependencies = {
-      { "SmiteshP/nvim-navic" },
+      "SmiteshP/nvim-navic",
     },
     config = function()
       require("nvim-navic").setup({

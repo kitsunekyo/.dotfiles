@@ -7,6 +7,8 @@ return {
     "saghen/blink.cmp",
     version = "*",
     dependencies = "rafamadriz/friendly-snippets",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     opts = {
       keymap = { preset = "default", ["<C-f>"] = { "accept" }, ["<CR>"] = { "accept", "fallback" } },
       appearance = {
@@ -36,6 +38,8 @@ return {
   -- lsp config
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     dependencies = {
       { "williamboman/mason.nvim", opts = {} },
       "williamboman/mason-lspconfig.nvim",
@@ -120,6 +124,7 @@ return {
   },
   {
     "pmizio/typescript-tools.nvim",
+    ft = { "typescript", "typescriptreact" },
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {
       settings = {

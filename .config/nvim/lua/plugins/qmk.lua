@@ -1,6 +1,7 @@
 return {
   {
     "codethread/qmk.nvim",
+    ft = { "c" },
     config = function()
       ---@type qmk.UserConfig
       local conf = {
