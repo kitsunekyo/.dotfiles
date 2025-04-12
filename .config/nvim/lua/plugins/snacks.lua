@@ -40,7 +40,7 @@ return {
       },
       notifier = {},
       notify = {},
-      lazygit = {},
+      -- lazygit = {},
       scope = {},
       scroll = {},
       quickfile = {},

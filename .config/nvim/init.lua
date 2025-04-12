@@ -7,16 +7,18 @@ vim.g.maplocalleader = " "
 -- umlaut mappings dont work.
 -- see https://github.com/neovim/neovim/issues/27776
 vim.opt.langmap = "ü+Ü*öÖ;[]{}\\;:"
-vim.keymap.set("n", "[ü", "[[", { desc = "Sections backward", noremap = true })
-vim.keymap.set("n", "]ä", "]]", { desc = "Sections backward", noremap = true })
-vim.keymap.set("n", "üb", ":bp<cr>", { desc = "Previous buffer", noremap = true }) -- prev buffer
-vim.keymap.set("n", "üq", ":cp<cr>", { desc = "Previous quickfix", noremap = true }) -- prev quickfix
-vim.keymap.set("n", "ül", ":lp<cr>", { desc = "Previous location", noremap = true }) -- prev location
-vim.keymap.set("n", "üt", ":tp<cr>", { desc = "Previous tag", noremap = true }) -- prev tag
-vim.keymap.set("n", "ü<space>", "O<esc>j", { desc = "Insert line above", noremap = true }) -- insert line above
+vim.keymap.set("n", "[ü", "[[", { desc = "Sections backward" })
+vim.keymap.set("n", "]ä", "]]", { desc = "Sections backward" })
+vim.keymap.set("n", "üb", ":bp<cr>", { desc = "Previous buffer" }) -- prev buffer
+vim.keymap.set("n", "üq", ":cp<cr>", { desc = "Previous quickfix" }) -- prev quickfix
+vim.keymap.set("n", "ül", ":lp<cr>", { desc = "Previous location" }) -- prev location
+vim.keymap.set("n", "üt", ":tp<cr>", { desc = "Previous tag" }) -- prev tag
+vim.keymap.set("n", "ü<space>", "O<esc>j", { desc = "Insert line above" }) -- insert line above
 
 -- bootstrap lazy.nvim
 require("config.lazy")
+
+vim.opt.undofile = true
 
 -- mouse
 vim.o.mouse = "a"
@@ -122,10 +124,10 @@ vim.keymap.set("n", "<S-Tab>", "<cmd>bp<cr>", { noremap = true, desc = "Previous
 vim.keymap.set("n", "<Tab>", "<cmd>bn<cr>", { noremap = true, desc = "Next buffer" })
 
 -- tags
-vim.keymap.set("n", "gt", "<C-]>", { noremap = true })
+vim.keymap.set("n", "gt", "<C-]>", { noremap = true, desc = "Go to tag" })
 
 -- toggle
-vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Linewrap" })
+vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle linewrap" })
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {
