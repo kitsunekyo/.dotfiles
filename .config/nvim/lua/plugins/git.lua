@@ -5,6 +5,13 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     opts = {
+      signs = {
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "?" },
+        changedelete = { text = "~" },
+      },
       on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
 
@@ -22,7 +29,6 @@ return {
             gitsigns.nav_hunk("next")
           end
         end, { desc = "Jump to next [h]unk" })
-
         -- `ü` for ISO [
         map("n", "üh", function()
           if vim.wo.diff then
