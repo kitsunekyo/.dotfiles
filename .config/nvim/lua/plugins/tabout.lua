@@ -1,4 +1,6 @@
 return {
   "abecodes/tabout.nvim",
-  opts = {},
+  opts = {
+    ignore_beginning = false,
+  },
 }
