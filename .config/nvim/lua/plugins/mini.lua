@@ -6,7 +6,9 @@ return {
       -- - saiw)        - [S]urround [A]dd [I]nner [W]ord with [)]Paren
       -- - sd'          - [S]urround [D]elete [']
       -- - sr'"         - [S]urround [R]eplace ['] with ["]
-      require("mini.surround").setup({})
+      require("mini.surround").setup({
+        respect_selection_type = true,
+      })
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.comment").setup({})
 

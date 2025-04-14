@@ -59,7 +59,7 @@ if [[ $(uname) == "Linux" ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-zinit pack for fzf
+# zinit pack for fzf
 zinit light Aloxaf/fzf-tab
 
 zinit ice blockf atpull'zinit creinstall -q .'
