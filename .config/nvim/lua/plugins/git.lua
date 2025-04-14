@@ -12,6 +12,13 @@ return {
         topdelete = { text = "?" },
         changedelete = { text = "~" },
       },
+      signs_staged = {
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "?" },
+        changedelete = { text = "~" },
+      },
       on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
 
@@ -38,8 +45,8 @@ return {
           end
         end, { desc = "Jump to previous [h]unk" })
 
-        -- Actions
         -- stylua: ignore start
+        -- Actions
         map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
         map("v", "<leader>hs", function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "git [s]tage hunk" })
         map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "git [r]eset hunk" })
@@ -51,6 +58,7 @@ return {
         map("n", "<leader>hb", gitsigns.blame_line, { desc = "git [b]lame line" })
         map("n", "<leader>hd", gitsigns.diffthis, { desc = "git [d]iff against index" })
         map("n", "<leader>hD", function() gitsigns.diffthis("@") end, { desc = "git [D]iff against last commit" })
+
         -- Toggles
         map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Inline git blame" })
         -- stylua: ignore end
