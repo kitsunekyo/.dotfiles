@@ -10,9 +10,9 @@ return {
         keys = vim.g.have_nerd_font and {} or {}, -- steal from kickstart if necessary
       },
       spec = {
+        { "<leader>f", group = "[F]ind" },
         { "<leader>c", group = "[C]ode", mode = { "n", "x" } },
         { "<leader>b", group = "[B]uffer" },
-        { "<leader>r", group = "[R]ename" },
         { "<leader>s", group = "[S]earch" },
         { "<leader>t", group = "[T]oggle" },
         { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },

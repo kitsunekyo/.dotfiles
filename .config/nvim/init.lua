@@ -79,6 +79,9 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+vim.keymap.set("n", "<leader>w", ":w!<cr>", { desc = "Write File" })
+vim.keymap.set("n", "<leader>q", ":q<cr>", { desc = "Close nvim" })
+
 -- clipboard
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
@@ -87,13 +90,19 @@ end)
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-vim.keymap.set("n", "<leader>v", "<C-v>", { desc = "Visual Block mode", noremap = true })
--- text editing
+-- dont put `p` and `x` deletions in registers
 vim.keymap.set("n", "x", '"_x')
--- vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete without register", noremap = true })
--- vim.keymap.set("n", "<leader>c", '"_c', { desc = "Change without register", noremap = true })
+-- vim.keymap.set("n", "p", '"_p')
+
+-- motions
 vim.keymap.set("n", "gh", "^", { desc = "Jump to first character", noremap = true })
 vim.keymap.set("n", "gl", "$", { desc = "Jump to last character", noremap = true })
+
+-- scrolling
+vim.keymap.set("n", "<C-e>", "5<C-e>")
+vim.keymap.set("n", "<C-y>", "5<C-y>")
+
+-- better indent in visual mode
 vim.keymap.set("v", "<Tab>", ">gv", { noremap = true })
 vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true })
 
@@ -110,15 +119,6 @@ vim.keymap.set("n", "º", ":m .+1<cr>==", { desc = "Move Line Down", noremap = t
 vim.keymap.set("v", "º", ":m '>+1<cr>gv=gv", { desc = "Move Line Down", noremap = true })
 vim.keymap.set("v", "∆", ":m '<-2<cr>gv=gv", { desc = "Move Line Up", noremap = true })
 
--- scrolling
-vim.keymap.set("n", "<C-e>", "5<C-e>")
-vim.keymap.set("n", "<C-y>", "5<C-y>")
-
--- file actions
-vim.keymap.set("n", "<leader>w", ":w!<cr>", { desc = "Write File" })
-vim.keymap.set("n", "<leader>q", ":q<cr>", { desc = "Close nvim" })
-vim.keymap.set("n", "<leader>rc", ":source $MYVIMRC<cr>", { desc = "Source nvim config", noremap = true })
-
 -- buffers
 vim.keymap.set("n", "<S-Tab>", "<cmd>bp<cr>", { noremap = true, desc = "Previous buffer" })
 vim.keymap.set("n", "<Tab>", "<cmd>bn<cr>", { noremap = true, desc = "Next buffer" })
@@ -127,7 +127,8 @@ vim.keymap.set("n", "<Tab>", "<cmd>bn<cr>", { noremap = true, desc = "Next buffe
 vim.keymap.set("n", "gt", "<C-]>", { noremap = true, desc = "Go to tag" })
 
 -- toggle
-vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle linewrap" })
+vim.keymap.set("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle wrap" })
+vim.keymap.set("n", "<leader>tv", "<C-v>", { desc = "Toggle visual block mode", noremap = true })
 
 -- autocommands
 vim.api.nvim_create_autocmd("TextYankPost", {

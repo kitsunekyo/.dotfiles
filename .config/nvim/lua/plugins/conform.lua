@@ -8,18 +8,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "ConformInfo" },
     keys = {
-      {
-        "<leader>df",
-        format,
-        mode = "",
-        desc = "Format",
-      },
-      {
-        "==",
-        format,
-        mode = "",
-        desc = "Format",
-      },
+      { "<leader>bf", format, desc = "Format buffer" },
+      { "==", format, desc = "Format buffer" },
     },
     opts = {
       formatters_by_ft = {

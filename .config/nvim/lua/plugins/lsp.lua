@@ -72,17 +72,24 @@ return {
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
           -- stylua: ignore start
-          map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
           map("<leader>td", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics")
-
-          map("üd", function() vim.diagnostic.goto_prev({ count=-1, float=true, wrap=true }) end)
-          map("+d", function() vim.diagnostic.goto_next({ count=1, float=true, wrap=true }) end)
+          map("üd", function() vim.diagnostic.goto_prev({ count=-1, float=true, wrap=true }) end, "Previous diagnostic")
+          map("+d", function() vim.diagnostic.goto_next({ count=1, float=true, wrap=true }) end, "Next diagnostic")
           -- stylua: ignore end
         end,
       })
 
       local servers = {
-        lua_ls = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = "Replace",
+              },
+              diagnostics = { disable = { "missing-fields" } },
+            },
+          },
+        },
         eslint = {
           settings = {
             codeAction = {
