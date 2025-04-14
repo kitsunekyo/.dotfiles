@@ -16,7 +16,26 @@
   update = "!git fetch && git rebase --autostash FETCH_HEAD"
   up = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
   squash = rebase -i master
+[core]
+  editor = nvim
+[init]
+  defaultBranch = main
 [push]
   autoSetupRemote = true
-[core]
-	editor = nvim
+[merge]
+  conflictStyle = zdiff3
+  tool = nvim
+[rebase]
+  autosquash = true
+  autostash = true
+[rerere]
+  enabled = true
+[help]
+  autocorrect = 10 # automatically run autocorrected command after 1s
+[diff]
+  algorithm = histogram
+  colorMoved = default
+[branch]
+  sort = -committerdate
+[fetch]
+  prune = true
