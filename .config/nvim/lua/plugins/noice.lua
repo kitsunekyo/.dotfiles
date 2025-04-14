@@ -5,7 +5,6 @@ return {
       "MunifTanjim/nui.nvim",
     },
     event = "VeryLazy",
-    enabled = true,
     opts = {
       lsp = {
         override = {
