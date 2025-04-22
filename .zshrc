@@ -13,6 +13,7 @@ autoload -Uz _zinit
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export LANG=en_US
 export EDITOR="nvim"
 export VISUAL="nvim"
 
