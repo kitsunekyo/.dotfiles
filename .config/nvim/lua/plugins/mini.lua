@@ -12,18 +12,36 @@ return {
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.comment").setup({})
 
-      -- below plugins should not be loaded when using vscode-neovim
       if vim.g.vscode then
         return nil
       end
 
       local statusline = require("mini.statusline")
-      statusline.setup({ use_icons = vim.g.have_nerd_font })
 
-      -- @diagnostic disable-next-line: duplicate-set-field
-      -- statusline.section_location = function()
-      --   return "%2l:%-2v"
-      -- end
+      statusline.setup({
+        use_icons = vim.g.have_nerd_font,
+        content = {
+          active = function()
+            local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
+            local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
+            local lsp = statusline.section_lsp({ trunc_width = 75 })
+            local filename = statusline.section_filename({ trunc_width = 140 })
+            -- local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
+            local location = "%l│%2v"
+            local search = statusline.section_searchcount({ trunc_width = 75 })
+
+            return statusline.combine_groups({
+              { hl = mode_hl, strings = { mode } },
+              { hl = "MiniStatuslineDevinfo", strings = { diagnostics, lsp } },
+              "%<", -- Mark general truncate point
+              { hl = "MiniStatuslineFilename", strings = { filename } },
+              "%=", -- End left alignment
+              -- { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+              { hl = mode_hl, strings = { search, location } },
+            })
+          end,
+        },
+      })
     end,
   },
 }
