@@ -41,11 +41,10 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     dependencies = {
-      { "williamboman/mason.nvim", opts = {} },
+      "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      -- { "j-hui/fidget.nvim", opts = {} },
-      { "saghen/blink.cmp" },
+      "saghen/blink.cmp",
     },
     config = function()
       vim.diagnostic.config({
@@ -60,7 +59,7 @@ return {
             [vim.diagnostic.severity.HINT] = "󰌶",
           },
         },
-        virtual_lines = true,
+        virtual_text = true,
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -109,17 +108,17 @@ return {
       vim.list_extend(ensure_installed, {
         "stylua",
         "prettierd",
-        "eslint_d",
+        "eslint",
+        "lua_ls",
       })
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+      require("mason").setup()
+      require("mason-tool-installer").setup({ ensure_installed = ensure_installed, auto_update = true })
       require("mason-lspconfig").setup({
-        ensure_installed = {},
-        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
