@@ -17,6 +17,9 @@ return {
           return name == ".git"
         end,
       },
+      win_options = {
+        winbar = "%#@attribute.builtin#%{substitute(v:lua.require('oil').get_current_dir(), '^' . $HOME, '~', '')}",
+      },
     },
     keys = {
       { "-", "<cmd>Oil<cr>", { desc = "Open parent directory" } },
