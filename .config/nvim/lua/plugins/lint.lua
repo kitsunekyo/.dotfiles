@@ -1,18 +1,18 @@
 return {
   {
-    enabled = false,
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
+    enabled = false,
     dependencies = {
       "williamboman/mason.nvim",
     },
     config = function()
       local lint = require("lint")
       lint.linters_by_ft = {
-        javascript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescript = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
+        -- javascript = { "eslint" },
+        -- javascriptreact = { "eslint" },
+        -- typescript = { "eslint" },
+        -- typescriptreact = { "eslint" },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -57,6 +57,9 @@ return {
           end
         end,
       })
+      vim.keymap.set("n", "<leader>bl", function()
+        lint.try_lint()
+      end, { desc = "Lint buffer" })
     end,
   },
   {
