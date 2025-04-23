@@ -6,7 +6,7 @@ vim.g.maplocalleader = " "
 -- remap ü+ to [] to mimic US ansi for better movements with iso keyboards
 -- umlaut mappings dont work.
 -- see https://github.com/neovim/neovim/issues/27776
-vim.opt.langmap = "ü+Ü*öÖ;[]{}\\;:"
+vim.opt.langmap = "ü+öä;[]\\;@"
 vim.keymap.set("n", "[ü", "[[", { desc = "Sections backward" })
 vim.keymap.set("n", "]ä", "]]", { desc = "Sections backward" })
 vim.keymap.set("n", "üb", ":bp<cr>", { desc = "Previous buffer" }) -- prev buffer
@@ -19,6 +19,7 @@ vim.keymap.set("n", "ü<space>", "O<esc>j", { desc = "Insert line above" }) -- i
 require("config.lazy")
 
 vim.opt.undofile = true
+vim.opt.swapfile = false
 
 -- mouse
 vim.o.mouse = "a"
