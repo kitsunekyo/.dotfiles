@@ -39,3 +39,5 @@
   sort = -committerdate
 [fetch]
   prune = true
+[blame]
+  date = relative
