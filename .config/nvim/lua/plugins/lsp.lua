@@ -4,39 +4,6 @@ end
 
 return {
   {
-    "saghen/blink.cmp",
-    version = "*",
-    dependencies = "rafamadriz/friendly-snippets",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
-    opts = {
-      keymap = { preset = "default", ["<C-f>"] = { "accept" }, ["<CR>"] = { "accept", "fallback" } },
-      appearance = {
-        nerd_font_variant = "mono",
-      },
-      sources = {
-        default = { "lsp", "path", "buffer" },
-      },
-      cmdline = {
-        enabled = false,
-      },
-    },
-    opts_extend = { "sources.default" },
-  },
-  -- lua globals
-  {
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = {
-      library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-        { path = "snacks.nvim", words = { "Snacks" } },
-        { path = "lazy.nvim", words = { "LazyVim" } },
-      },
-    },
-  },
-  -- lsp config
-  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
@@ -47,6 +14,54 @@ return {
       "saghen/blink.cmp",
     },
     config = function()
+      local servers = {
+        eslint = {
+          settings = {
+            codeAction = {
+              showDocumentation = {
+                enable = false,
+              },
+            },
+            format = false,
+          },
+        },
+        lua_ls = {
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = "Replace",
+              },
+              diagnostics = { disable = { "missing-fields" } },
+            },
+          },
+        },
+      }
+
+      local ensure_installed = vim.tbl_keys(servers or {})
+      vim.list_extend(ensure_installed, {
+        "stylua",
+        "prettierd",
+        "eslint",
+        "lua_ls",
+      })
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+      require("mason").setup()
+      require("mason-tool-installer").setup({ ensure_installed = ensure_installed, auto_update = true })
+      require("mason-lspconfig").setup({
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            require("lspconfig")[server_name].setup(server)
+          end,
+        },
+      })
+
+      -- diagnostics
       vim.diagnostic.config({
         severity_sort = true,
         -- float = { border = "rounded", source = "if_many" },
@@ -77,56 +92,6 @@ return {
           -- stylua: ignore end
         end,
       })
-
-      local servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
-              },
-              diagnostics = { disable = { "missing-fields" } },
-            },
-          },
-        },
-        eslint = {
-          settings = {
-            codeAction = {
-              disableRuleComment = {
-                enable = false,
-              },
-              showDocumentation = {
-                enable = false,
-              },
-            },
-            format = false,
-          },
-        },
-      }
-
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua",
-        "prettierd",
-        "eslint",
-        "lua_ls",
-      })
-
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-      require("mason").setup()
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed, auto_update = true })
-      require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
-      })
     end,
   },
   {
@@ -136,6 +101,17 @@ return {
     opts = {
       settings = {
         expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
+      },
+    },
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
   },
