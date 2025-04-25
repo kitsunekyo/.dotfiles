@@ -24,6 +24,12 @@ return {
             },
             format = false,
           },
+          on_attach = function(client, buffer)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = buffer,
+              command = "EslintFixAll",
+            })
+          end,
         },
         lua_ls = {
           settings = {
