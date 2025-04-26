@@ -82,6 +82,7 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 vim.keymap.set("n", "<leader>w", ":w!<cr>", { desc = "Write" })
 vim.keymap.set("n", "<leader>q", ":q<cr>", { desc = "Close" })
+vim.keymap.set("n", "<leader>wq", ":wq<cr>", { desc = "Write and close" })
 
 -- clipboard
 vim.schedule(function()
