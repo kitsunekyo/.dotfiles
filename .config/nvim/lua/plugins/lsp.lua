@@ -14,6 +14,7 @@ return {
       "saghen/blink.cmp",
     },
     config = function()
+      ---@type vim.lsp.config
       local servers = {
         eslint = {
           settings = {
