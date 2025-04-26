@@ -67,6 +67,20 @@ return {
         },
       })
 
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        desc = "Highlight",
+        callback = function(_)
+          vim.lsp.buf.document_highlight()
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("CursorMoved", {
+        desc = "Highlight",
+        callback = function(_)
+          vim.lsp.buf.clear_references()
+        end,
+      })
+
       -- diagnostics
       vim.diagnostic.config({
         severity_sort = true,
