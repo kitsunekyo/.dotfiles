@@ -42,6 +42,7 @@ return {
             },
           },
         },
+        vtsls = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -68,20 +69,6 @@ return {
         },
       })
 
-      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-        desc = "Highlight",
-        callback = function(_)
-          vim.lsp.buf.document_highlight()
-        end,
-      })
-
-      vim.api.nvim_create_autocmd("CursorMoved", {
-        desc = "Remove Highlight",
-        callback = function(_)
-          vim.lsp.buf.clear_references()
-        end,
-      })
-
       -- diagnostics
       vim.diagnostic.config({
         severity_sort = true,
@@ -99,7 +86,7 @@ return {
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {
-        desc = "LSP actions",
+        desc = "diagnostics keymaps",
         callback = function(event)
           local function map(keys, cb, desc)
             vim.keymap.set("n", keys, cb, { buffer = event.buf, noremap = true, desc = desc or "" })
@@ -111,12 +98,27 @@ return {
           map("üd", function() vim.diagnostic.goto_prev({ count=-1, float=true, wrap=true }) end, "Previous diagnostic")
           map("+d", function() vim.diagnostic.goto_next({ count=1, float=true, wrap=true }) end, "Next diagnostic")
           -- stylua: ignore end
+
+          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            desc = "Highlight",
+            callback = function(_)
+              vim.lsp.buf.document_highlight()
+            end,
+          })
+
+          vim.api.nvim_create_autocmd("CursorMoved", {
+            desc = "Remove Highlight",
+            callback = function(_)
+              vim.lsp.buf.clear_references()
+            end,
+          })
         end,
       })
     end,
   },
   {
     "pmizio/typescript-tools.nvim",
+    enabled = false,
     ft = { "typescript", "typescriptreact" },
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {
