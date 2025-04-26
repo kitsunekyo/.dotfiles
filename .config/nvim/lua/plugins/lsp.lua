@@ -76,7 +76,7 @@ return {
       })
 
       vim.api.nvim_create_autocmd("CursorMoved", {
-        desc = "Highlight",
+        desc = "Remove Highlight",
         callback = function(_)
           vim.lsp.buf.clear_references()
         end,
