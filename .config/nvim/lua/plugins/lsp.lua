@@ -86,17 +86,25 @@ return {
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {
-        desc = "diagnostics keymaps",
+        desc = "keymaps",
         callback = function(event)
           local function map(keys, cb, desc)
             vim.keymap.set("n", keys, cb, { buffer = event.buf, noremap = true, desc = desc or "" })
           end
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          -- local client = vim.lsp.get_client_by_id(event.data.client_id)
 
           -- stylua: ignore start
+          -- lsp-defaults
+          -- - "grn" is mapped in Normal mode to |vim.lsp.buf.rename()|
+          -- - "gra" is mapped in Normal and Visual mode to |vim.lsp.buf.code_action()|
+          -- - "grr" is mapped in Normal mode to |vim.lsp.buf.references()|
+          -- - "gri" is mapped in Normal mode to |vim.lsp.buf.implementation()|
+          -- - "gO" is mapped in Normal mode to |vim.lsp.buf.document_symbol()|
+          -- - CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
           map("<leader>td", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics")
           map("üd", function() vim.diagnostic.goto_prev({ count=-1, float=true, wrap=true }) end, "Previous diagnostic")
           map("+d", function() vim.diagnostic.goto_next({ count=1, float=true, wrap=true }) end, "Next diagnostic")
+          map("<C-k>", vim.lsp.buf.signature_help, "Show signature_help")
           -- stylua: ignore end
 
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
