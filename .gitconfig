@@ -3,6 +3,8 @@
   email = alexander.spieslechner@dynatrace.com # might need to change this
 [github]
   user = kitsunekyo
+[core]
+  editor = nvim
 [alias]
   a = add
   c = commit -m
@@ -16,8 +18,6 @@
   update = "!git fetch && git rebase --autostash FETCH_HEAD"
   up = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
   squash = rebase -i @{u}
-[core]
-  editor = nvim
 [init]
   defaultBranch = main
 [push]
