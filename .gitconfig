@@ -1,46 +1,66 @@
 [user]
   name = Alex Spieslechner
   email = alexander.spieslechner@dynatrace.com # might need to change this
+
 [github]
   user = kitsunekyo
+
 [core]
   editor = nvim
-[alias]
-  a = add
-  c = commit -m
-  s = status
-  p = push
-  pf = push --force
-  l = log --pretty='format:%C(green) %<(20,trunc)%cn %C(magenta)%<(20,trunc)%ch %C(yellow) %h %C(reset)%<(72,trunc)%s'
-  rh = reset --hard @{u} # hard reset to current upstream branch
-  fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup" # interactively select fixup
-  upstash = "!git stash && git pull && git stash pop" # update current branch with temp stash
-  update = "!git fetch && git rebase --autostash FETCH_HEAD"
-  up = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
-  squash = rebase -i @{u}
+
 [init]
   defaultBranch = main
+
+[advice]
+  statusHints = false
+
+[log]
+  abbrevCommit = true
+
+[status]
+  branch = true
+  short = true
+  showStash = true
+  showUntrackedFiles = all
+
 [push]
   autoSetupRemote = true
+  default = current # push only current branch
+  followTags = true # push tags
+
+[pull]
+  rebase = true
+
 [merge]
   conflictStyle = zdiff3
   tool = nvim
+
 [rebase]
   autosquash = true
   autostash = true
+
 [rerere]
   enabled = true
+
 [help]
   autocorrect = 10 # automatically run autocorrected command after 1s
+
 [diff]
+  context = 3
   algorithm = histogram
   colorMoved = default
+  innerHunkContext = 10
+
 [branch]
   sort = -committerdate
+
 [fetch]
   prune = true
+
 [blame]
+  coloring = highlightRecent
   date = relative
+
 [alias]
   a = add
   c = commit -m
@@ -54,3 +74,8 @@
   update = "!git fetch && git rebase --autostash FETCH_HEAD"
   up = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
   squash = rebase -i @{u}
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+[url "git@bitbucket.lab.dynatrace.org"]
+    insteadOf = "dt:"
