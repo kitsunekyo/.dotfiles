@@ -24,26 +24,26 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-setopt no_beep
-setopt auto_cd # cd into directory without typing `cd`
-setopt auto_menu
-setopt no_menu_complete # unblock auto_menu
-setopt auto_pushd
-setopt pushd_minus # Exchanges the meanings of '+' and '-' when used with a number to specify a directory in the stack.
-setopt pushd_ignore_dups # dont add duplicates in the stack
-setopt pushd_silent # dont print directory stack after pushd and popd
-setopt interactivecomments
-setopt prompt_subst
-setopt correct
+setopt NO_BEEP
+setopt AUTO_CD # cd into directory without typing `cd`
+setopt AUTO_MENU
+setopt NO_MENU_COMPLETE # unblock auto_menu
+setopt AUTO_PUSHD
+setopt PUSHD_MINUS # Exchanges the meanings of '+' and '-' when used with a number to specify a directory in the stack.
+setopt PUSHD_IGNORE_DUPS # dont add duplicates in the stack
+setopt PUSHD_SILENT # dont print directory stack after pushd and popd
+setopt INTERACTIVECOMMENTS
+setopt PROMPT_SUBST
+setopt CORRECT
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1100000000
 SAVEHIST=1000000000
-setopt hist_expire_dups_first
-setopt hist_find_no_dups
-setopt hist_save_no_dups
-setopt hist_ignore_space
-setopt share_history
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
 
 alias ll='ls -la'
 alias l='ls -gaho --color'
