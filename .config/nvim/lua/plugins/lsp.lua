@@ -42,7 +42,16 @@ return {
             },
           },
         },
-        vtsls = {},
+        ts_ls = {
+          settings = {
+            typescript = {
+              preferGoToSourceDefinition = true,
+              experimental = {
+                useTsgo = true,
+              },
+            },
+          },
+        },
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
