@@ -73,7 +73,7 @@
   upstash = "!git stash && git pull && git stash pop" # update current branch with temp stash
   update = "!git fetch && git rebase --autostash FETCH_HEAD"
   up = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
-  squash = rebase -i @{u}
+  squash = rebase -i HEAD~8
 
 [url "git@github.com:"]
     insteadOf = "gh:"
