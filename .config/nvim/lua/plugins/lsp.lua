@@ -100,7 +100,6 @@ return {
           local function map(keys, cb, desc)
             vim.keymap.set("n", keys, cb, { buffer = event.buf, noremap = true, desc = desc or "" })
           end
-          -- local client = vim.lsp.get_client_by_id(event.data.client_id)
 
           -- stylua: ignore start
           -- lsp-defaults
@@ -116,19 +115,23 @@ return {
           map("<C-k>", vim.lsp.buf.signature_help, "Show signature_help")
           -- stylua: ignore end
 
-          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-            desc = "Highlight",
-            callback = function(_)
-              vim.lsp.buf.document_highlight()
-            end,
-          })
+          local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
 
-          vim.api.nvim_create_autocmd("CursorMoved", {
-            desc = "Remove Highlight",
-            callback = function(_)
-              vim.lsp.buf.clear_references()
-            end,
-          })
+          if client:supports_method("textDocument/documentHighlight") then
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+              desc = "Highlight",
+              callback = function(_)
+                vim.lsp.buf.document_highlight()
+              end,
+            })
+
+            vim.api.nvim_create_autocmd("CursorMoved", {
+              desc = "Remove Highlight",
+              callback = function(_)
+                vim.lsp.buf.clear_references()
+              end,
+            })
+          end
         end,
       })
     end,
