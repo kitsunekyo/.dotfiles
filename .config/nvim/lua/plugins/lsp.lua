@@ -59,6 +59,17 @@ return {
         end,
       })
 
+      vim.lsp.config("ts_ls", {
+        settings = {
+          typescript = {
+            preferGoToSourceDefinition = true,
+            preferences = {
+              preferTypeOnlyAutoImports = true,
+            },
+          },
+        },
+      })
+
       vim.diagnostic.config({
         severity_sort = true,
         -- float = { border = "rounded", source = "if_many" },
