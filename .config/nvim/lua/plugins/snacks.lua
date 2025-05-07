@@ -55,7 +55,6 @@ return {
       { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find files", },
       { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart find files", },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Find recent files", },
-      { "<leader>f.", function() Snacks.picker.files({ cwd = "$HOME/.dotfiles/" }) end, desc = "Find in .dotfiles", },
       { "<leader>fB", function() Snacks.picker.lines() end, desc = "Buffer Lines", },
       { "<leader>fu", function() Snacks.picker.undo() end, desc = "Find in undo history", },
 
