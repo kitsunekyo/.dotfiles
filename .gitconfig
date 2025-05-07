@@ -19,8 +19,8 @@
 
 [status]
   branch = true
-  short = true
   showStash = true
+  aheadBehind = true
   showUntrackedFiles = all
 
 [push]
