@@ -30,9 +30,13 @@ return {
         win = {
           input = {
             keys = {
+              -- alt+i
               ["⁄"] = { "toggle_ignored", mode = { "i", "n" } },
+              -- alt+h
               ["ª"] = { "toggle_hidden", mode = { "i", "n" } },
+              -- alt+p
               ["π"] = { "toggle_preview", mode = { "i", "n" } },
+              -- alt+m
               ["µ"] = { "toggle_maximize", mode = { "i", "n" } },
             },
           },
@@ -45,13 +49,13 @@ return {
       quickfile = {},
       terminal = {},
     },
-    -- stylua: ignore start
     keys = {
+      -- stylua: ignore start
       -- [F]ind
       { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find files", },
       { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart find files", },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Find recent files", },
-      { "<leader>f.", function() Snacks.picker.files({ cwd = "$HOME/.dotfiles" }) end, desc = "Find in .dotfiles", },
+      { "<leader>f.", function() Snacks.picker.files({ cwd = "$HOME/.dotfiles/" }) end, desc = "Find in .dotfiles", },
       { "<leader>fB", function() Snacks.picker.lines() end, desc = "Buffer Lines", },
       { "<leader>fu", function() Snacks.picker.undo() end, desc = "Find in undo history", },
 
@@ -67,7 +71,7 @@ return {
 
       -- [B]uffers
       { "<leader>bb", function() Snacks.picker.buffers() end, desc = "Find buffer", },
-      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Close buffer", },
+      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer", },
       { "<leader>bQ", function() Snacks.bufdelete.all() end, desc = "Close all buffers", },
 
       -- [H]unk / git
@@ -79,7 +83,7 @@ return {
       { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition", },
       { "grr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References", },
       { "gri", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation", },
+      -- stylua: ignore end
     },
-    -- stylua: ignore end
   },
 }
