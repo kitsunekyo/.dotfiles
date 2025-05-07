@@ -6,10 +6,9 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      keymap = { preset = "default", ["<C-f>"] = { "accept" }, ["<CR>"] = { "accept", "fallback" } },
+      keymap = { preset = "default", ["<C-f>"] = { "accept" } },
       cmdline = { enabled = false },
       completion = {
-        ghost_text = { enabled = true },
         menu = {
           draw = {
             columns = {
