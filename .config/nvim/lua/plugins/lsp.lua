@@ -10,75 +10,55 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
       "saghen/blink.cmp",
     },
     config = function()
-      ---@type vim.lsp.config
-      local servers = {
-        eslint = {
-          settings = {
-            codeAction = {
-              showDocumentation = {
-                enable = false,
-              },
-            },
-            format = false,
-          },
-          on_attach = function(_, buffer)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = buffer,
-              command = "EslintFixAll",
-            })
-          end,
-        },
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
-              },
-              diagnostics = { disable = { "missing-fields" } },
-            },
+      -- lsp manager
+      require("mason").setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
           },
         },
-        ts_ls = {
-          settings = {
-            typescript = {
-              preferGoToSourceDefinition = true,
-              experimental = {
-                useTsgo = true,
-              },
-            },
-          },
-        },
-      }
+      })
 
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua",
-        "prettierd",
-        "eslint",
+      -- automatically enables installed lsps
+      require("mason-lspconfig").setup({ ensure_installed = {
         "lua_ls",
-      })
+        "ts_ls",
+        "eslint",
+      } })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-      require("mason").setup()
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed, auto_update = true })
-      require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+            },
+            diagnostics = { disable = { "missing-fields" } },
+          },
         },
       })
 
-      -- diagnostics
+      vim.lsp.config("eslint", {
+        settings = {
+          codeAction = {
+            showDocumentation = {
+              enable = false,
+            },
+          },
+          format = false,
+        },
+        on_attach = function(_, buffer)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = buffer,
+            command = "EslintFixAll",
+          })
+        end,
+      })
+
       vim.diagnostic.config({
         severity_sort = true,
         -- float = { border = "rounded", source = "if_many" },
@@ -95,7 +75,7 @@ return {
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {
-        desc = "keymaps",
+        desc = "configure lsp features",
         callback = function(event)
           local function map(keys, cb, desc)
             vim.keymap.set("n", keys, cb, { buffer = event.buf, noremap = true, desc = desc or "" })
@@ -135,17 +115,6 @@ return {
         end,
       })
     end,
-  },
-  {
-    "pmizio/typescript-tools.nvim",
-    enabled = false,
-    ft = { "typescript", "typescriptreact" },
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {
-      settings = {
-        expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
-      },
-    },
   },
   {
     "folke/lazydev.nvim",
