@@ -7,7 +7,6 @@ return {
     ---@type blink.cmp.Config
     opts = {
       keymap = { preset = "default", ["<C-f>"] = { "accept" } },
-      cmdline = { enabled = false },
       completion = {
         menu = {
           draw = {
