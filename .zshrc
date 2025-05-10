@@ -101,3 +101,4 @@ bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
 
 # zprof
+eval "$(zoxide init zsh --cmd j)"
