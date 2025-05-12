@@ -33,6 +33,7 @@ vim.o.relativenumber = true
 vim.o.scrolloff = 10
 vim.o.termguicolors = true
 vim.o.signcolumn = "yes"
+vim.o.winbar = "%f %m"
 
 -- decrease update time
 vim.o.updatetime = 250
