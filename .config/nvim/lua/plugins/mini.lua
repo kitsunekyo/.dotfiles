@@ -3,7 +3,7 @@ return {
     "echasnovski/mini.nvim",
     config = function()
       -- mini.surround default keybinds
-      -- - saiw)        - [S]urround [A]dd [I]nner [W]ord with [)]Paren
+      -- - saiw)        - [S]urround [A]dd + motion = [I]nner [W]ord with [)]Paren
       -- - sd'          - [S]urround [D]elete [']
       -- - sr'"         - [S]urround [R]eplace ['] with ["]
       require("mini.surround").setup({

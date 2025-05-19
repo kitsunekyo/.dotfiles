@@ -13,7 +13,6 @@ autoload -Uz _zinit
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
-export LANG=en_US
 export EDITOR="nvim"
 export VISUAL="nvim"
 
@@ -101,4 +100,4 @@ bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
 
 # zprof
-eval "$(zoxide init zsh --cmd j)"
+eval "$(zoxide init zsh --cmd z)"

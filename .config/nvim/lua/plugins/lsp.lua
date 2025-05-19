@@ -98,6 +98,7 @@ return {
           -- - "grr" is mapped in Normal mode to |vim.lsp.buf.references()|
           -- - "gri" is mapped in Normal mode to |vim.lsp.buf.implementation()|
           -- - "gO" is mapped in Normal mode to |vim.lsp.buf.document_symbol()|
+          -- - CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
 
           -- stylua: ignore start
           map("<leader>tD", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics")
