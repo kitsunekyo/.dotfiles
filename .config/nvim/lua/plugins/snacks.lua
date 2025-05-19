@@ -5,7 +5,6 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-      explorer = {},
       dashboard = {
         sections = {
           { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
@@ -65,7 +64,7 @@ return {
 
       -- [T]oggle
       { "<leader>tn", function() Snacks.notifier.show_history() end, desc = "Toggle notification history", },
-      { "<leader>te", function() Snacks.picker.explorer({ hidden = true, layout = { layout = { position = 'right', } } }) end, desc = "Toggle file explorer", },
+      -- { "<leader>te", function() Snacks.picker.explorer({ hidden = true, layout = { layout = { position = 'right', } } }) end, desc = "Toggle file explorer", },
       { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Toggle Terminal", },
 
       -- [B]uffers
