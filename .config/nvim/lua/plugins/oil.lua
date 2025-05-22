@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     opts = {
       default_file_explorer = true,
@@ -18,7 +18,7 @@ return {
       },
     },
     keys = {
-      { "-", "<cmd>Oil<cr>", { desc = "Open parent directory" } },
+      { "-", "<cmd>Oil<cr>", { desc = "Open file explorer" } },
     },
   },
 }

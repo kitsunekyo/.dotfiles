@@ -12,6 +12,7 @@ return {
       { "==", format, desc = "Format buffer" },
     },
     opts = {
+      log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
         lua = { "stylua" },
         javascript = { "prettierd" },
@@ -21,6 +22,7 @@ return {
         css = { "prettierd" },
         html = { "prettierd" },
         json = { "prettierd" },
+        jsonc = { "prettierd" },
         yaml = { "prettierd" },
         markdown = { "prettierd" },
       },

@@ -74,12 +74,84 @@ return {
         end,
       })
 
+      -- unused
       vim.lsp.config("ts_ls", {
         settings = {
           typescript = {
             preferGoToSourceDefinition = true,
             preferences = {
               preferTypeOnlyAutoImports = true,
+            },
+          },
+        },
+      })
+
+      vim.lsp.config("vtsls", {
+        settings = {
+          javascript = {
+            format = {
+              enable = false,
+            },
+          },
+          typescript = {
+            format = {
+              enable = false,
+            },
+            preferGoToSourceDefinition = true,
+            preferences = {
+              preferTypeOnlyAutoImports = true,
+            },
+          },
+        },
+      })
+
+      vim.lsp.config("jsonls", {
+        settings = {
+          json = {
+            format = {
+              enable = false,
+            },
+            schemas = {
+              {
+                fileMatch = { "package.json" },
+                url = "https://json.schemastore.org/package.json",
+              },
+              {
+                fileMatch = { "tsconfig*.json" },
+                url = "https://json.schemastore.org/tsconfig.json",
+              },
+              {
+                fileMatch = {
+                  ".prettierrc",
+                  ".prettierrc.json",
+                  "prettier.config.json",
+                },
+                url = "https://json.schemastore.org/prettierrc.json",
+              },
+              {
+                fileMatch = { ".eslintrc", ".eslintrc.json" },
+                url = "https://json.schemastore.org/eslintrc.json",
+              },
+              {
+                fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
+                url = "https://json.schemastore.org/babelrc.json",
+              },
+              {
+                fileMatch = { "lerna.json" },
+                url = "https://json.schemastore.org/lerna.json",
+              },
+              {
+                fileMatch = { "now.json", "vercel.json" },
+                url = "https://json.schemastore.org/now.json",
+              },
+              {
+                fileMatch = {
+                  ".stylelintrc",
+                  ".stylelintrc.json",
+                  "stylelint.config.json",
+                },
+                url = "http://json.schemastore.org/stylelintrc.json",
+              },
             },
           },
         },
@@ -120,31 +192,6 @@ return {
 
           local win = vim.api.nvim_get_current_win()
           vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
-        end,
-      })
-
-      vim.api.nvim_create_autocmd("LspAttach", {
-        desc = "Highlight symbol",
-        callback = function(event)
-          local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
-
-          if not client:supports_method("textDocument/documentHighlight") then
-            return
-          end
-
-          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-            desc = "Highlight",
-            callback = function(_)
-              vim.lsp.buf.document_highlight()
-            end,
-          })
-
-          vim.api.nvim_create_autocmd("CursorMoved", {
-            desc = "Remove Highlight",
-            callback = function(_)
-              vim.lsp.buf.clear_references()
-            end,
-          })
         end,
       })
     end,

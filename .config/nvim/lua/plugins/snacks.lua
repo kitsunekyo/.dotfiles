@@ -5,14 +5,6 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-      dashboard = {
-        sections = {
-          { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
-          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-          { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-          { section = "startup" },
-        },
-      },
       bigfile = {},
       input = {},
       picker = {
@@ -41,12 +33,7 @@ return {
           },
         },
       },
-      notifier = {},
-      notify = {},
-      scope = {},
       scroll = {},
-      quickfile = {},
-      terminal = {},
     },
     keys = {
       -- stylua: ignore start
@@ -64,8 +51,6 @@ return {
 
       -- [T]oggle
       { "<leader>tn", function() Snacks.notifier.show_history() end, desc = "Toggle notification history", },
-      -- { "<leader>te", function() Snacks.picker.explorer({ hidden = true, layout = { layout = { position = 'right', } } }) end, desc = "Toggle file explorer", },
-      { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Toggle Terminal", },
 
       -- [B]uffers
       { "<leader>bb", function() Snacks.picker.buffers() end, desc = "Find buffer", },
