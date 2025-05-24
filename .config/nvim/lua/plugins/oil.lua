@@ -16,6 +16,9 @@ return {
       win_options = {
         wrap = true,
       },
+      keymaps = {
+        ["'"] = { "actions.cd", mode = "n", desc = "Set cwd" },
+      },
     },
     keys = {
       { "-", "<cmd>Oil<cr>", { desc = "Open file explorer" } },
