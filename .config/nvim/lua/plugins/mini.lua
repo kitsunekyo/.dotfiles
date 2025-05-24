@@ -16,6 +16,8 @@ return {
       require("mini.jump").setup()
       require("mini.cursorword").setup()
       require("mini.notify").setup()
+      vim.notify = require("mini.notify").make_notify()
+
       local indent = require("mini.indentscope")
       indent.setup({})
       vim.g.miniindentscope_disable = true
