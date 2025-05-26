@@ -34,9 +34,12 @@ vim.o.scrolloff = 10
 vim.o.termguicolors = true
 vim.o.signcolumn = "yes"
 vim.o.winbar = "%f %m"
+vim.o.winborder = "rounded"
 
 -- decrease update time
 vim.o.updatetime = 250
+
+vim.o.messagesopt = "wait:3000,history:500"
 
 -- search
 vim.o.hlsearch = true
