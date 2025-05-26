@@ -16,7 +16,6 @@ return {
       -- diagnostics
       vim.diagnostic.config({
         severity_sort = true,
-        -- float = { border = "rounded", source = "if_many" },
         -- underline = { severity = vim.diagnostic.severity.ERROR },
         signs = {
           text = {
@@ -26,25 +25,18 @@ return {
             [vim.diagnostic.severity.HINT] = "󰌶",
           },
         },
-        virtual_text = true,
+        virtual_text = {
+          severity = { min = vim.diagnostic.severity.WARN },
+        },
       })
 
       -- lsp manager
       require("mason").setup({
-        ui = {
-          icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
-          },
-        },
+        ui = { icons = { package_installed = "✓", package_pending = "➜", package_uninstalled = "✗" } },
       })
 
       -- automatically enables installed lsps
-      require("mason-lspconfig").setup({ ensure_installed = {
-        "lua_ls",
-        "eslint",
-      } })
+      require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "eslint", "vtsls", "jsonls" } })
 
       vim.lsp.config("lua_ls", {
         settings = {
@@ -65,13 +57,14 @@ return {
             },
           },
           format = false,
+          codeActionOnSave = {
+            enable = true,
+            mode = "all",
+          },
+          problems = {
+            shortenToSingleLine = true,
+          },
         },
-        on_attach = function(_, buffer)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = buffer,
-            command = "EslintFixAll",
-          })
-        end,
       })
 
       -- unused
@@ -173,10 +166,9 @@ return {
           -- - CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
 
           -- stylua: ignore start
-          map("<leader>tD", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics")
-          map("üd", function() vim.diagnostic.jump({ count=-1, float=true, wrap=true }) end, "Previous diagnostic")
-          map("+d", function() vim.diagnostic.jump({ count=1, float=true, wrap=true }) end, "Next diagnostic")
-          map("<C-k>", vim.lsp.buf.signature_help, "Show signature_help")
+          map("<leader>tz", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, "Inline diagnostics (zen-mode)")
+          map("üd", function() vim.diagnostic.jump({ count=-1, float=true }) end, "Previous diagnostic")
+          map("]d", function() vim.diagnostic.jump({ count=1, float=true }) end, "Next diagnostic")
           -- stylua: ignore end
         end,
       })
@@ -206,5 +198,10 @@ return {
         { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
+  },
+  {
+    "davidmh/mdx.nvim",
+    config = true,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
 }
