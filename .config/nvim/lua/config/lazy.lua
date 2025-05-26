@@ -16,14 +16,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    "tpope/vim-sleuth",
+    { "tpope/vim-sleuth" },
     { "nvim-tree/nvim-web-devicons", opts = {} },
     { import = "plugins" },
   },
   checker = { enabled = true },
   install = { missing = true },
   change_detection = { notify = false },
-  ui = {
-    border = "rounded",
-  },
+  ui = { border = "rounded" },
 })
