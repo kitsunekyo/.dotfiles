@@ -39,7 +39,7 @@ vim.o.winborder = "rounded"
 -- decrease update time
 vim.o.updatetime = 250
 
-vim.o.messagesopt = "hit-enter,wait:3000,history:500"
+vim.o.messagesopt = "wait:1000,history:500"
 
 -- search
 vim.o.hlsearch = true
