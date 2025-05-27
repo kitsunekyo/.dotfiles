@@ -8,8 +8,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "ConformInfo" },
     keys = {
-      { "<leader>bf", format, desc = "Format buffer" },
-      { "==", format, desc = "Format buffer" },
+      { "<leader>bf", format, desc = "format" },
     },
     opts = {
       log_level = vim.log.levels.DEBUG,

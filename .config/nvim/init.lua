@@ -35,11 +35,12 @@ vim.o.termguicolors = true
 vim.o.signcolumn = "yes"
 vim.o.winbar = "%f %m"
 vim.o.winborder = "rounded"
+vim.o.laststatus = 3
 
 -- decrease update time
 vim.o.updatetime = 250
 
-vim.o.messagesopt = "wait:1000,history:500"
+-- vim.o.messagesopt = "wait:1000,history:500"
 
 -- search
 vim.o.hlsearch = true
