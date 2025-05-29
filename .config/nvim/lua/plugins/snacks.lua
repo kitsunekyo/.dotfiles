@@ -3,38 +3,41 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
     ---@type snacks.Config
     opts = {
       bigfile = {},
       input = {},
       picker = {
         hidden = true,
-        layout = {
-          preset = "select",
+        matcher = {
+          cwd_bonus = true,
         },
+        layout = {},
         formatters = {
           file = {
             filename_first = true,
-            truncate = 120,
+            -- truncate = 120,
           },
         },
         win = {
           input = {
             keys = {
-              -- alt+i
-              ["⁄"] = { "toggle_ignored", mode = { "i", "n" } },
-              -- alt+h
-              ["ª"] = { "toggle_hidden", mode = { "i", "n" } },
-              -- alt+p
-              ["π"] = { "toggle_preview", mode = { "i", "n" } },
-              -- alt+m
-              ["µ"] = { "toggle_maximize", mode = { "i", "n" } },
+              ["⁄"] = { "toggle_ignored", mode = { "i", "n" } }, -- alt+i
+              ["ª"] = { "toggle_hidden", mode = { "i", "n" } }, -- alt+h
+              ["π"] = { "toggle_preview", mode = { "i", "n" } }, -- alt+p
+              ["µ"] = { "toggle_maximize", mode = { "i", "n" } }, -- alt+m
+              -- ctrl-q put results into quickfix
+              -- ctrl-g toggle livegrep
             },
           },
         },
       },
       scroll = {},
       notifier = {},
+      quickfile = {},
     },
     keys = {
       -- stylua: ignore start
@@ -46,6 +49,7 @@ return {
       { "<leader>fu", function() Snacks.picker.undo() end, desc = "Find in undo history", },
 
       -- [S]earch
+      { "<leader>sp", function() Snacks.picker() end, desc = "Search pickers", },
       { "<leader>sg", function() Snacks.picker.grep() end, desc = "Search grep", },
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Search Symbols (LSP)", },
       { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Search Workspace Symbols (LSP)", },
@@ -54,7 +58,7 @@ return {
       { "<leader>tn", function() Snacks.notifier.show_history() end, desc = "Toggle notification history", },
 
       -- [B]uffers
-      { "<leader>bb", function() Snacks.picker.buffers() end, desc = "Find buffer", },
+      { "<leader>bb", function() Snacks.picker.buffers({ unloaded = false }) end, desc = "Find buffer", },
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer", },
       { "<leader>bQ", function() Snacks.bufdelete.all() end, desc = "Close all buffers", },
 
