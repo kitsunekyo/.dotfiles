@@ -22,6 +22,7 @@ return {
           "yaml",
           "jsdoc",
           "json",
+          "regex",
         },
         sync_install = false,
         auto_install = true,
