@@ -34,6 +34,7 @@ return {
         },
       },
       scroll = {},
+      notifier = {},
     },
     keys = {
       -- stylua: ignore start

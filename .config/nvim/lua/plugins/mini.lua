@@ -27,29 +27,29 @@ return {
         return nil
       end
 
-      local miniFiles = require("mini.files")
-      miniFiles.setup({
-        mappings = {
-          go_out_plus = "h",
-          go_out = "H",
-          go_in_plus = "l",
-          go_in = "L",
-          synchronize = "w",
-        },
-        options = {
-          use_as_default_explorer = true,
-        },
-      })
-      vim.keymap.set("n", "-", function()
-        miniFiles.open(vim.api.nvim_buf_get_name(0))
-      end, { desc = "Open explorer" })
-      vim.api.nvim_create_autocmd("User", {
-        desc = "mini.files relativenumber",
-        pattern = "MiniFilesWindowUpdate",
-        callback = function(args)
-          vim.wo[args.data.win_id].relativenumber = true
-        end,
-      })
+      -- local miniFiles = require("mini.files")
+      -- miniFiles.setup({
+      --   mappings = {
+      --     go_out_plus = "h",
+      --     go_out = "H",
+      --     go_in_plus = "l",
+      --     go_in = "L",
+      --     synchronize = "w",
+      --   },
+      --   options = {
+      --     use_as_default_explorer = true,
+      --   },
+      -- })
+      -- vim.keymap.set("n", "-", function()
+      --   miniFiles.open(vim.api.nvim_buf_get_name(0))
+      -- end, { desc = "Open explorer" })
+      -- vim.api.nvim_create_autocmd("User", {
+      --   desc = "mini.files relativenumber",
+      --   pattern = "MiniFilesWindowUpdate",
+      --   callback = function(args)
+      --     vim.wo[args.data.win_id].relativenumber = true
+      --   end,
+      -- })
 
       local statusline = require("mini.statusline")
 

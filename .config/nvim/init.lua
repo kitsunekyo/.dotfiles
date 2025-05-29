@@ -9,7 +9,6 @@ vim.g.maplocalleader = " "
 vim.opt.langmap = "ü+öä;[]\\;@"
 vim.keymap.set("n", "[ü", "[[", { desc = "Sections backward" })
 vim.keymap.set("n", "]ä", "]]", { desc = "Sections backward" })
-vim.keymap.set("n", "üc", "]c", { desc = "Diff backward" })
 vim.keymap.set("n", "üm", "]m", { desc = "File backward" })
 vim.keymap.set("n", "üb", ":bp<cr>", { desc = "Previous buffer" }) -- prev buffer
 vim.keymap.set("n", "üq", ":cp<cr>", { desc = "Previous quickfix" }) -- prev quickfix
