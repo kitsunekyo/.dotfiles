@@ -2,6 +2,8 @@ return {
   {
     "saghen/blink.cmp",
     version = "1.*",
+    event = { "CmdlineEnter", "BufReadPost", "BufNewFile" },
+    lazy = true,
     dependencies = { "rafamadriz/friendly-snippets" },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config

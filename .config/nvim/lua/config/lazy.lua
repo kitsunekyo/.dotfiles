@@ -20,8 +20,6 @@ require("lazy").setup({
     { "nvim-tree/nvim-web-devicons", opts = {} },
     { import = "plugins" },
   },
-  checker = { enabled = true },
-  install = { missing = true },
-  change_detection = { notify = false },
+  install = { colorscheme = { "onedark" } },
   ui = { border = "rounded" },
 })

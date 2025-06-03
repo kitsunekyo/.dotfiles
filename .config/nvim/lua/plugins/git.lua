@@ -1,9 +1,11 @@
 return {
   {
     "tpope/vim-fugitive",
+    event = { "BufReadPost", "BufNewFile" },
   },
   {
     "lewis6991/gitsigns.nvim",
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       signs = {
         add = { text = "+" },

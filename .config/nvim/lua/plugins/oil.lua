@@ -18,7 +18,7 @@ return {
       },
       keymaps = {
         ["'"] = { "actions.cd", mode = "n", desc = "cd here" },
-        ["gr"] = { "actions.refresh", mode = "n", desc = "Refresh" },
+        ["<leader>r"] = { "actions.refresh", mode = "n", desc = "Refresh" },
         ["gS"] = { "actions.change_sort", mode = "n" },
         ["gs"] = { "actions.select", opts = { vertical = true }, desc = "Open in vertical split" },
         ["gv"] = { "actions.select", opts = { horizontal = true }, desc = "Open in horizontal split" },
