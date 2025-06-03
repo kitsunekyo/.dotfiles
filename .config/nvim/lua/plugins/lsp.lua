@@ -4,12 +4,12 @@ end
 
 return {
   {
-    "neovim/nvim-lspconfig",
+    "williamboman/mason-lspconfig.nvim",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     dependencies = {
       "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
       "saghen/blink.cmp",
     },
     config = function()
@@ -57,10 +57,6 @@ return {
             },
           },
           format = false,
-          codeActionOnSave = {
-            enable = true,
-            mode = "all",
-          },
           problems = {
             shortenToSingleLine = true,
           },
@@ -81,16 +77,7 @@ return {
 
       vim.lsp.config("vtsls", {
         settings = {
-          javascript = {
-            format = {
-              enable = false,
-            },
-          },
           typescript = {
-            format = {
-              enable = false,
-            },
-            preferGoToSourceDefinition = true,
             preferences = {
               preferTypeOnlyAutoImports = true,
             },
@@ -201,6 +188,7 @@ return {
   },
   {
     "davidmh/mdx.nvim",
+    ft = "markdown",
     config = true,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
