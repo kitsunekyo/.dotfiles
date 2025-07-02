@@ -4,11 +4,9 @@ end
 
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+    "mason-org/mason-lspconfig.nvim",
     dependencies = {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
       "saghen/blink.cmp",
     },
@@ -30,20 +28,16 @@ return {
         },
       })
 
-      -- lsp manager
       require("mason").setup({
         ui = { icons = { package_installed = "✓", package_pending = "➜", package_uninstalled = "✗" } },
       })
 
-      -- automatically enables installed lsps
       require("mason-lspconfig").setup({ ensure_installed = { "lua_ls", "eslint", "vtsls", "jsonls" } })
 
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
-            completion = {
-              callSnippet = "Replace",
-            },
+            completion = { callSnippet = "Replace" },
             diagnostics = { disable = { "missing-fields" } },
           },
         },
@@ -52,9 +46,7 @@ return {
       vim.lsp.config("eslint", {
         settings = {
           codeAction = {
-            showDocumentation = {
-              enable = false,
-            },
+            showDocumentation = { enable = false },
           },
           format = false,
           problems = {

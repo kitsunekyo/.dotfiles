@@ -10,15 +10,20 @@ return {
     opts = {
       bigfile = {},
       input = {},
+      layout = {},
       picker = {
         hidden = true,
         matcher = {
           cwd_bonus = true,
+          frecency = true,
         },
-        layout = {},
+        layout = {
+          preset = "ivy",
+        },
         formatters = {
           file = {
             filename_first = true,
+            -- truncate = vim.api.nvim_win_get_width(0) * 0.8,
             -- truncate = 120,
           },
         },
@@ -42,9 +47,9 @@ return {
     keys = {
       -- stylua: ignore start
       -- [F]ind
-      { "<leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find files", },
-      { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart find files", },
-      { "<leader>fr", function() Snacks.picker.recent() end, desc = "Find recent files", },
+      { "<leader>ff", function() Snacks.picker.files({ hidden = true, layout = "vscode" }) end, desc = "Find files", },
+      { "<leader>fs", function() Snacks.picker.smart({ hidden = true, layout = "vscode" }) end, desc = "Smart find files", },
+      { "<leader>fr", function() Snacks.picker.recent({ hidden = true, layout = "vscode" }) end, desc = "Find recent files", },
       { "<leader>fB", function() Snacks.picker.lines() end, desc = "Buffer Lines", },
       { "<leader>fu", function() Snacks.picker.undo() end, desc = "Find in undo history", },
 
