@@ -29,12 +29,15 @@ vim.g.have_nerd_font = true
 vim.o.title = true
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.scrolloff = 10
+vim.o.scrolloff = 3
 vim.o.termguicolors = true
 vim.o.signcolumn = "yes"
 vim.o.winbar = "%f %m"
 vim.o.winborder = "rounded"
 vim.o.laststatus = 3
+vim.o.cursorline = true
+vim.o.cursorlineopt = "screenline"
+vim.o.wrap = false
 
 -- decrease update time
 vim.o.updatetime = 250
@@ -48,25 +51,25 @@ vim.o.smartcase = true
 vim.o.inccommand = "split"
 
 -- indentation
-vim.o.autoindent = true
 vim.o.smartindent = true
-vim.o.autoindent = true
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
+vim.o.copyindent = true
 vim.o.breakindent = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+-- vim.o.expandtab = true
 
 -- fold
 vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.o.foldtext = ""
-vim.opt.foldcolumn = "0"
-vim.opt.fillchars:append({ fold = " " })
+-- vim.o.foldtext = ""
+-- vim.opt.foldcolumn = "0"
+-- vim.opt.fillchars:append({ fold = " " })
 
 -- completion
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.opt.shortmess = vim.opt.shortmess + "c"
-vim.lsp.inlay_hint.enable()
+-- vim.lsp.inlay_hint.enable()
 
 -- window management
 vim.o.splitbelow = true
