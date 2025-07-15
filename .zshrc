@@ -59,6 +59,7 @@ alias l='eza -l'
 alias la='eza -la'
 alias e='eza'
 alias ea='eza -a'
+alias docker='podman'
 
 if [[ $(uname) == "Linux" ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
