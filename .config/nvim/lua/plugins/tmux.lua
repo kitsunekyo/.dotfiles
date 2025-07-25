@@ -1,6 +1,7 @@
 return {
   {
     "christoomey/vim-tmux-navigator",
+    enabled = vim.g.vscode == nil,
     lazy = true,
     cmd = {
       "TmuxNavigateLeft",

@@ -5,6 +5,7 @@ return {
     event = { "CmdlineEnter", "BufReadPost", "BufNewFile" },
     lazy = true,
     dependencies = { "rafamadriz/friendly-snippets" },
+    enabled = vim.g.vscode == nil,
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {

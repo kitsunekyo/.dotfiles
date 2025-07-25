@@ -16,6 +16,16 @@ vim.keymap.set("n", "ül", ":lp<cr>", { desc = "Previous location" })       -- p
 vim.keymap.set("n", "üt", ":tp<cr>", { desc = "Previous tag" })            -- prev tag
 vim.keymap.set("n", "ü<space>", "O<esc>j", { desc = "Insert line above" }) -- insert line above
 
+if vim.g.vscode then
+  vim.api.nvim_set_keymap("n", "zM", '<Cmd>call VSCodeNotify("editor.foldAll")<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "zR", '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "zc", '<Cmd>call VSCodeNotify("editor.fold")<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "zC", '<Cmd>call VSCodeNotify("editor.foldRecursively")<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "zo", '<Cmd>call VSCodeNotify("editor.unfold")<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "zO", '<Cmd>call VSCodeNotify("editor.unfoldRecursively")<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "za", '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>', { noremap = true, silent = true })
+end
+
 -- bootstrap lazy.nvim
 require("config.lazy")
 

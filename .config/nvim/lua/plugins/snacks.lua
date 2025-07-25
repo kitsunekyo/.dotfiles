@@ -1,6 +1,7 @@
 return {
   {
     "folke/snacks.nvim",
+    enabled = vim.g.vscode == nil,
     priority = 1000,
     lazy = false,
     dependencies = {

@@ -14,18 +14,19 @@ return {
       require("mini.comment").setup()
       require("mini.pairs").setup()
       require("mini.jump").setup()
-      require("mini.cursorword").setup()
-      require("mini.notify").setup()
       -- require("mini.bracketed").setup()
       -- TODO: add ü as replacement for [ in keymaps for iso
+
+      if vim.g.vscode then
+        return nil
+      end
 
       local indent = require("mini.indentscope")
       indent.setup({})
       vim.g.miniindentscope_disable = true
 
-      if vim.g.vscode then
-        return nil
-      end
+      require("mini.cursorword").setup()
+      require("mini.notify").setup()
 
       -- local miniFiles = require("mini.files")
       -- miniFiles.setup({

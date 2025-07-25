@@ -1,10 +1,7 @@
-if vim.g.vscode then
-  return {}
-end
-
 return {
   {
     "mason-org/mason-lspconfig.nvim",
+    enabled = vim.g.vscode == nil,
     dependencies = {
       "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",

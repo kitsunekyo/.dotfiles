@@ -1,6 +1,7 @@
 return {
   {
     "folke/which-key.nvim",
+    enabled = vim.g.vscode == nil,
     event = "VeryLazy",
     lazy = true,
     opts = {

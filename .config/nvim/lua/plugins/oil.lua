@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
-    enabled = true,
+    enabled = vim.g.vscode == nil,
     lazy = false,
     opts = {
       default_file_explorer = true,

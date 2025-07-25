@@ -1,10 +1,12 @@
 return {
   {
     "tpope/vim-fugitive",
+    enabled = vim.g.vscode == nil,
     event = { "BufReadPost", "BufNewFile" },
   },
   {
     "lewis6991/gitsigns.nvim",
+    enabled = vim.g.vscode == nil,
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       signs = {
