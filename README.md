@@ -32,3 +32,21 @@ brew install \
 ### Link .dotfiles with `stow`
 
 Run `stow .` within `~/.dotfiles` to symlink all files.
+
+## Tools
+
+### Searching
+- `rg`: Ripgrep, a recursive line-oriented search tool. Fast alternative to `grep`.
+- `eza`: Modern, maintained replacement for `ls`.
+- `fd`: An alternative to `find`.
+- `f2`: Powerfull search and replace.
+- `fzf`: Interactive filter for any kind of list.
+
+### Runtime manager
+- `mise`: Fast alternative to `nvm`. Manage language runtimes like Node.js, Python, Ruby, Go, Java, etc and various tools.
+
+### Window management
+- `tmux`: Terminal multiplexer. It allows multiple sessions with windows, panes, and more.
+
+### Navigation
+- `zoxide`: Alternative to `cd`. Keep track of the most frequently used directories. Uses a ranking algorithm to navigate to the best match.
