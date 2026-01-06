@@ -6,13 +6,19 @@ Clone repo into home directory `~/.dotfiles`.
 
 ### Install dependencies
 
-First install gnu-stow via the package manager. 
+First install gnu-stow and zsh via the package manager. 
 
 ```bash
-sudo apt install stow -y
+sudo apt install stow zsh -y
 ```
 
-Then homebrew / linuxbrew, so we can easily install the rest of our tools. Follow the install guide on [https://brew.sh/](https://brew.sh/).
+Set zsh as the default shell for your user.
+
+```bash
+chsh -s $(which zsh)
+```
+
+Then install homebrew / linuxbrew, so we can easily install the rest of our tools. Follow the install guide on [https://brew.sh/](https://brew.sh/).
 
 Last, we can install all the tools in one command.
 
