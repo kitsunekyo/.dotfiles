@@ -12,11 +12,11 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 export XDG_CONFIG_HOME="$HOME/.config"
-
 export EDITOR="nvim"
 export VISUAL="nvim"
-
 export PNPM_HOME="$HOME/.local/share/pnpm"
+export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_OPTS="--layout=default --border=rounded"
 
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;

@@ -26,8 +26,6 @@ Last, we can install all the tools in one command.
 brew install \
   # THE editor
   nvim \
-  # Interactive filter for any kind of list.
-  fzf \
   # Modern, maintained replacement for `ls`.
   eza \ 
   # Fast alternative to `nvm`. Manage language runtimes like Node.js, Python, Ruby, Go, Java, etc and various tools.
