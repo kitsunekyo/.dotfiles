@@ -24,6 +24,8 @@ Last, we can install all the tools in one command.
 
 ```bash
 brew install \
+  # shell history db
+  atuin \
   # THE editor
   nvim \
   # Modern, maintained replacement for `ls`.

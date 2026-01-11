@@ -65,6 +65,9 @@ if [[ $(uname) == "Linux" ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+# shell history
+eval "$(atuin init zsh)"
+
 # zinit pack for fzf
 zinit light Aloxaf/fzf-tab
 
