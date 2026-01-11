@@ -55,10 +55,7 @@ alias ..='cd ..'
 alias c='clear'
 alias lg='lazygit'
 alias pn='pnpm'
-alias l='eza -l'
-alias la='eza -la'
 alias e='eza'
-alias ea='eza -a'
 alias docker='podman'
 
 if [[ $(uname) == "Linux" ]]; then
