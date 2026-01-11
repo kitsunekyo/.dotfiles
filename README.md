@@ -48,3 +48,7 @@ brew install \
 ### Link .dotfiles with `stow`
 
 Run `stow .` within `~/.dotfiles` to symlink all files.
+
+### Install mise dependencies
+
+To install mise managed things like `node` run `mise install`.
