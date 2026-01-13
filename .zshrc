@@ -63,7 +63,7 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 # shell history
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # zinit pack for fzf
 zinit light Aloxaf/fzf-tab
