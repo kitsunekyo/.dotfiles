@@ -1,7 +1,7 @@
 return {
   {
     "tpope/vim-fugitive",
-    enabled = vim.g.vscode == nil,
+    -- enabled = vim.g.vscode == nil,
     event = { "BufReadPost", "BufNewFile" },
   },
   {

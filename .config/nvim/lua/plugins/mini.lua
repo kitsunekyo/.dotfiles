@@ -12,7 +12,7 @@ return {
       })
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.comment").setup()
-      require("mini.pairs").setup()
+      -- require("mini.pairs").setup()
       require("mini.jump").setup()
       -- require("mini.bracketed").setup()
       -- TODO: add ü as replacement for [ in keymaps for iso

@@ -41,8 +41,8 @@
   autosquash = true
   autostash = true
 
-[rerere]
-  enabled = true
+#[rerere]
+#  enabled = true
 
 [help]
   autocorrect = 10 # automatically run autocorrected command after 1s
@@ -61,7 +61,7 @@
   date = relative
 
 [feature]
-  manyFiles = true
+  # manyFiles = true # incompatible with gitkrakenk
 
 [alias]
   ss = switch -
@@ -77,6 +77,7 @@
   update = "!git fetch && git rebase --autostash FETCH_HEAD"
   up = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
   squash = rebase -i HEAD~8
+  back = reset --soft HEAD^
 
 [url "git@github.com:"]
     insteadOf = "gh:"

@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/alexander.spieslechner/.zsh/completions:"* ]]; then export FPATH="/Users/alexander.spieslechner/.zsh/completions:$FPATH"; fi
 # zmodload zsh/zprof
 
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -14,9 +16,11 @@ autoload -Uz _zinit
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="nvim"
 export VISUAL="nvim"
+export NX_TUI=false # nx TUI sucks unfortunately
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--layout=default --border=rounded"
+export PAGER="less -F -X"
 
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
@@ -118,3 +122,4 @@ bindkey '^x^e' edit-command-line
 
 # zprof
 eval "$(zoxide init zsh)"
+. "/Users/alexander.spieslechner/.deno/env"
