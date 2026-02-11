@@ -15,6 +15,7 @@ autoload -Uz _zinit
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
 export VISUAL="nvim"
 export NX_TUI=false # nx TUI sucks unfortunately
 export PNPM_HOME="$HOME/.local/share/pnpm"
