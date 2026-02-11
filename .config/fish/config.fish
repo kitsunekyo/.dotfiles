@@ -13,9 +13,8 @@ export VISUAL="nvim"
 export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_DEFAULT_OPTS="--layout=default --border=rounded"
 
-# if [[ $(uname) == "Linux" ]]; then
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-# fi
 
 atuin init fish --disable-up-arrow | source
 
+~/.local/bin/mise activate fish | source
