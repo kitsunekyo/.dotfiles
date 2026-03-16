@@ -1,54 +1,142 @@
-managed with `GNU stow`
+# dotfiles
 
-## Setup
+Managed with [GNU stow](https://www.gnu.org/software/stow/).
 
-Clone repo into home directory `~/.dotfiles`.
+## Arch Linux Setup
 
-### Install dependencies
+### 1. Install Arch & create a user
 
-First install gnu-stow and zsh via the package manager. 
+Follow the official [Arch Linux installation guide](https://wiki.archlinux.org/title/Installation_guide).
+
+After the base install, create a non-root user and add them to the `wheel` group (use bash as the temporary default shell):
 
 ```bash
-sudo apt install stow zsh -y
+useradd -m -G wheel -s /usr/bin/bash myuser
+passwd myuser
 ```
 
-Set zsh as the default shell for your user.
+Then grant the `wheel` group sudo access. See the [Arch wiki on sudo](https://wiki.archlinux.org/title/Sudo#Example_entries) for details.
 
 ```bash
-chsh -s $(which zsh)
+EDITOR=nvim visudo
 ```
 
-Then install homebrew / linuxbrew, so we can easily install the rest of our tools. Follow the install guide on [https://brew.sh/](https://brew.sh/).
+Uncomment the following line:
 
-Last, we can install all the tools in one command.
+```
+%wheel ALL=(ALL:ALL) ALL
+```
+
+Log out of root and switch to your new user from here on.
+
+---
+
+### 2. Install base packages
+
+`yay` is an AUR helper built on top of pacman. Install it first, then use it for everything else — it handles both official repo and AUR packages with the same interface.
+
+#### Install yay (AUR helper)
 
 ```bash
-brew install \
-  # shell history db
-  atuin \
-  # THE editor
-  nvim \
-  # Modern, maintained replacement for `ls`.
-  eza \ 
-  # Fast alternative to `nvm`. Manage language runtimes like Node.js, Python, Ruby, Go, Java, etc and various tools.
+sudo pacman -S --needed base-devel git
+git clone https://aur.archlinux.org/yay.git /tmp/yay
+cd /tmp/yay && makepkg -si
+```
+
+See the [yay GitHub page](https://github.com/Jguer/yay) for more info.
+
+#### Install packages
+
+```bash
+yay -S --needed \
+  fish \
+  stow \
+  git \
+  neovim \
   mise \
-  # Text search.
-  ripgrep \
-  # Terminal multiplexer. It allows multiple sessions with windows, panes, and more.
-  tmux \
-  # Alternative to `cd`. Keep track of the most frequently used directories. Uses a ranking algorithm to navigate to the best match.
-  zoxide \
-  # An alternative to `find`.
+  atuin \
+  eza \
   fd \
-  # Powerfull search and replace.
-  f2 \
-  rg # Ripgrep, a recursive line-oriented search tool. Fast alternative to `grep`.
+  ripgrep \
+  zoxide \
+  bat \
+  tldr \
+  tmux \
+  f2-bin \
+  nmap \
+  openssh \
+  man-db \
+  sudo \
+  which \
+  base-devel
 ```
 
-### Link .dotfiles with `stow`
+**Key tools:**
 
-Run `stow .` within `~/.dotfiles` to symlink all files.
+| Tool | Purpose |
+|------|---------|
+| `mise` | Dev tool & runtime version manager (node, go, rust, pnpm, fzf, ...) |
+| `yay` | AUR helper / pacman wrapper |
+| `atuin` | Shell history with search and sync |
+| `zoxide` | Smarter `cd` with frecency ranking |
+| `eza` | Modern `ls` replacement |
+| `fd` | Fast alternative to `find` |
+| `ripgrep` | Fast `grep` replacement |
+| `bat` | `cat` with syntax highlighting |
+| `tmux` | Terminal multiplexer |
+| `neovim` | Editor |
+| `stow` | Symlink manager for dotfiles |
 
-### Install mise dependencies
+---
 
-To install mise managed things like `node` run `mise install`.
+### 3. Set fish as default shell
+
+Now that fish is installed via pacman, switch your user's shell to fish:
+
+```bash
+chsh -s $(which fish)
+```
+
+Log out and back in for the change to take effect.
+
+---
+
+### 4. Clone & link dotfiles
+
+Clone this repo into your home directory:
+
+```bash
+git clone git@github.com:kitsunekyo/dotfiles.git ~/.dotfiles
+```
+
+Then run `stow` from inside the repo to symlink everything into `~`:
+
+```bash
+cd ~/.dotfiles
+stow .
+# if stow warns about existing files in .config use this
+# stow . --adopt && git restore .
+```
+
+---
+
+### 5. Install mise-managed runtimes
+
+`mise` replaces nvm, rustup, etc. with a single unified tool. After linking the dotfiles, install all runtimes defined in `~/.config/mise/config.toml`:
+
+```bash
+mise install
+```
+
+This installs:
+
+| Runtime / Tool | Version |
+|---------------|---------|
+| `node` | LTS |
+| `go` | latest |
+| `rust` | latest |
+| `pnpm` | 10.13.1 |
+| `fzf` | latest |
+
+See the [mise docs](https://mise.jdx.dev) for more.
+
