@@ -10,3 +10,6 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 atuin init fish --disable-up-arrow | source
 
 /usr/sbin/mise activate fish | source
+
+# opencode
+fish_add_path /home/aspieslechner/.opencode/bin
