@@ -1,11 +1,3 @@
-source /usr/share/cachyos-fish-config/cachyos-config.fish
-
-# overwrite greeting
-# potentially disabling fastfetch
-#function fish_greeting
-#    # smth smth
-#end
-
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export VISUAL="nvim"
@@ -17,4 +9,4 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 atuin init fish --disable-up-arrow | source
 
-~/.local/bin/mise activate fish | source
+/usr/sbin/mise activate fish | source
