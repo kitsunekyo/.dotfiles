@@ -2,11 +2,11 @@
 
 Managed with [GNU stow](https://www.gnu.org/software/stow/).
 
-## Arch Linux Setup
+## Arch Setup
 
-### 1. Install Arch & create a user
+I use arch in wsl2 at the moment, this readme assumes arch is already installed.
 
-Follow the official [Arch Linux installation guide](https://wiki.archlinux.org/title/Installation_guide).
+### 1. System setup
 
 After the base install, create a non-root user and add them to the `wheel` group (use bash as the temporary default shell):
 
@@ -31,6 +31,14 @@ Log out of root and switch to your new user from here on.
 
 ---
 
+**Setting the system locale**
+
+To prevent warnings about missing system locale run this command
+
+```bash
+localectl set-locale LANG=en_US.UTF-8
+```
+
 ### 2. Install base packages
 
 `yay` is an AUR helper built on top of pacman. Install it first, then use it for everything else — it handles both official repo and AUR packages with the same interface.
@@ -47,7 +55,7 @@ See the [yay GitHub page](https://github.com/Jguer/yay) for more info.
 
 #### Install packages
 
-```bash
+```basj
 yay -S --needed \
   fish \
   stow \
