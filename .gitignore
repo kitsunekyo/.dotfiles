@@ -1,1 +1,2 @@
 .config/go/telemetry/
+**/node_modules/
