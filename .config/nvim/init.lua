@@ -10,10 +10,10 @@ vim.opt.langmap = "ü+öä;[]\\;@"
 vim.keymap.set("n", "[ü", "[[", { desc = "Sections backward" })
 vim.keymap.set("n", "]ä", "]]", { desc = "Sections backward" })
 vim.keymap.set("n", "üm", "]m", { desc = "File backward" })
-vim.keymap.set("n", "üb", ":bp<cr>", { desc = "Previous buffer" })         -- prev buffer
-vim.keymap.set("n", "üq", ":cp<cr>", { desc = "Previous quickfix" })       -- prev quickfix
-vim.keymap.set("n", "ül", ":lp<cr>", { desc = "Previous location" })       -- prev location
-vim.keymap.set("n", "üt", ":tp<cr>", { desc = "Previous tag" })            -- prev tag
+vim.keymap.set("n", "üb", ":bp<cr>", { desc = "Previous buffer" }) -- prev buffer
+vim.keymap.set("n", "üq", ":cp<cr>", { desc = "Previous quickfix" }) -- prev quickfix
+vim.keymap.set("n", "ül", ":lp<cr>", { desc = "Previous location" }) -- prev location
+vim.keymap.set("n", "üt", ":tp<cr>", { desc = "Previous tag" }) -- prev tag
 vim.keymap.set("n", "ü<space>", "O<esc>j", { desc = "Insert line above" }) -- insert line above
 
 if vim.g.vscode then

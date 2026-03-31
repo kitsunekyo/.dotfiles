@@ -83,3 +83,5 @@
     insteadOf = "gh:"
 [url "git@bitbucket.lab.dynatrace.org:"]
     insteadOf = "dt:"
+[rerere]
+	enabled = false

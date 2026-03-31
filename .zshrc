@@ -124,3 +124,7 @@ bindkey '^x^e' edit-command-line
 # zprof
 eval "$(zoxide init zsh)"
 . "/Users/alexander.spieslechner/.deno/env"
+
+# opencode
+export PATH=/Users/alexander.spieslechner/.opencode/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
