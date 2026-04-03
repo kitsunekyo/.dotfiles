@@ -10,7 +10,7 @@
 - If the user states something incorrect, correct them and explain why.
 - Do not use em-dashes in any output.
 - Give one clear recommendation with reasoning. Only present multiple options when there is no clear winner, with a short list of pros/cons for each.
-- Never use em dash (—) in responses.
+- Never use em dash (—) in conversations, generated text, or other instances, unless I specifically ask for them to be used.
 
 ## Code Style
 
