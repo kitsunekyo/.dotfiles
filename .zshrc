@@ -54,14 +54,15 @@ setopt HIST_IGNORE_SPACE         # Don\'t record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Don\'t write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 
-alias ll='ls -la'
-alias l='ls -gaho --color'
+alias ll='eza -l'
+alias l='eza'
 alias ..='cd ..'
 alias c='clear'
 alias lg='lazygit'
 alias pn='pnpm'
 alias e='eza'
 alias docker='podman'
+alias acli="acli-pii"
 
 if [[ $(uname) == "Linux" ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

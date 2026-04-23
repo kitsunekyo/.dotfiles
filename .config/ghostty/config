@@ -15,8 +15,8 @@
 window-height=30
 window-width=120
 
-window-title-font-family="JetBrains Mono NF"
-font-family = "JetBrains Mono NF"
+window-title-font-family= "Hack" # "JetBrains Mono NF"
+font-family = "Hack" # "JetBrains Mono NF"
 font-size=13
 # font-feature=-liga, -calt, -dlig
 # => !== != ++ --
